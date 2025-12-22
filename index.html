@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách Game Đã Dịch - GAMEDUCVONG</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Thư viện game Việt hóa chất lượng cao từ GAMEDUCVONG">
 </head>
 <body>
     <!-- Background animated gradient -->
@@ -24,26 +25,39 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo-section">
-                    <div class="logo-icon">🐧</div>
-                    <div>
+                    <div class="logo-wrapper">
+                        <div class="logo-bg"></div>
+                        <span class="logo-text">GDV</span>
+                    </div>
+                    <div class="brand-info">
                         <h1 class="main-title">GAMEDUCVONG</h1>
-                        <p class="subtitle">Game việt hóa chất lượng cao NÓI KHÔNG VỚI DỊCH A.I</p>
+                        <p class="subtitle">Game Việt Hóa Chất Lượng Cao</p>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/share/1GCT3nGne5/" target="_blank" rel="noopener" class="social-btn official">
+                                <span class="btn-icon">F</span>
+                                <span class="btn-text">Admin Chính Chủ</span>
+                            </a>
+                            <a href="https://www.facebook.com/groups/1989187598586537/" target="_blank" rel="noopener" class="social-btn group">
+                                <span class="btn-icon">G</span>
+                                <span class="btn-text">Nhóm Facebook</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="stats-container">
                     <div class="stat-card">
-                        <div class="stat-icon">🔥</div>
-                        <div class="stat-info">
+                        <div class="stat-glow"></div>
+                        <div class="stat-content">
                             <span class="stat-value" id="game-count">0</span>
-                            <span class="stat-label">Game đã được dịch</span>
+                            <span class="stat-label">Games Đã Dịch</span>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon">⭐</div>
-                        <div class="stat-info">
+                        <div class="stat-glow"></div>
+                        <div class="stat-content">
                             <span class="stat-value" id="total-rating">0</span>
-                            <span class="stat-label">Đánh giá</span>
+                            <span class="stat-label">Đánh Giá TB</span>
                         </div>
                     </div>
                 </div>
@@ -56,20 +70,19 @@
         <div class="container">
             <div class="search-bar">
                 <div class="search-input-wrapper">
-                    <span class="search-icon">🔍</span>
                     <input 
                         type="text" 
                         id="search-input" 
                         placeholder="Tìm kiếm game theo tên, thể loại..."
                         autocomplete="off"
                     >
-                    <button class="clear-search" id="clear-search" style="display: none;">✕</button>
+                    <button class="clear-search" id="clear-search" style="display: none;">×</button>
                 </div>
             </div>
             
             <div class="filter-controls">
                 <div class="filter-group">
-                    <label class="filter-label">Sắp xếp:</label>
+                    <label class="filter-label">Sắp xếp</label>
                     <select id="sort-select" class="filter-select">
                         <option value="name">Tên A-Z</option>
                         <option value="name-desc">Tên Z-A</option>
@@ -80,11 +93,11 @@
                 </div>
                 
                 <div class="view-toggle">
-                    <button class="view-btn active" data-view="grid" title="Grid view">
-                        <span class="view-icon">▦</span>
+                    <button class="view-btn active" data-view="grid" title="Xem dạng lưới">
+                        <span class="view-icon"></span>
                     </button>
-                    <button class="view-btn" data-view="list" title="List view">
-                        <span class="view-icon">☰</span>
+                    <button class="view-btn" data-view="list" title="Xem dạng danh sách">
+                        <span class="view-icon"></span>
                     </button>
                 </div>
             </div>
@@ -102,7 +115,6 @@
             
             <!-- Empty state -->
             <div id="empty-state" class="empty-state" style="display: none;">
-                <div class="empty-icon">🎮</div>
                 <h3>Không tìm thấy game nào</h3>
                 <p>Thử tìm kiếm với từ khóa khác</p>
             </div>
@@ -117,18 +129,50 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>Tất cả game được việt hóa trong đây đều thuộc của nhóm GAMEDUCVONG</p>
-            <p class="footer-links">
-                <a href="#" class="footer-link">About</a>
-                <a href="#" class="footer-link">Contact</a>
-                <a href="#" class="footer-link">Contribute</a>
-            </p>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">GDV</div>
+                    <h3>GAMEDUCVONG</h3>
+                    <p>Đơn vị tiên phong trong lĩnh vực Việt hóa game chất lượng cao</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Liên Kết</h4>
+                    <ul>
+                        <li><a href="https://www.facebook.com/share/1GCT3nGne5/" target="_blank" rel="noopener">Admin Chính Chủ</a></li>
+                        <li><a href="https://www.facebook.com/groups/1989187598586537/" target="_blank" rel="noopener">Nhóm Facebook</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Thông Tin</h4>
+                    <ul>
+                        <li><a href="#about">Về Chúng Tôi</a></li>
+                        <li><a href="#contact">Liên Hệ</a></li>
+                        <li><a href="#contribute">Đóng Góp</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Cộng Đồng</h4>
+                    <p class="footer-description">Tham gia cộng đồng GAMEDUCVONG để nhận tin tức mới nhất về các bản dịch game</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/share/1GCT3nGne5/" target="_blank" rel="noopener" class="footer-social-btn" title="Admin Chính Chủ">F</a>
+                        <a href="https://www.facebook.com/groups/1989187598586537/" target="_blank" rel="noopener" class="footer-social-btn" title="Nhóm Facebook">G</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 GAMEDUCVONG. Tất cả game Việt hóa đều thuộc quyền sở hữu của nhóm</p>
+                <p class="footer-credits">Designed with passion for gaming community</p>
+            </div>
         </div>
     </footer>
 
     <!-- Scroll to top button -->
     <button id="scroll-top" class="scroll-top" title="Lên đầu trang">
-        <span>↑</span>
+        <span class="scroll-arrow"></span>
     </button>
 
     <script src="script.js"></script>
