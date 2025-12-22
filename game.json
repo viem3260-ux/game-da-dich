@@ -1,229 +1,396 @@
 [
   {
     "id": "game-001",
-    "title": "Silent Hill: Echoes of Darkness",
+    "title": "Shistaz! Sex Life with Sister-in-Law",
     "image": "images/game1.jpg",
     "thumbnail": "images/game1-thumb.jpg",
-    "description": "Game kinh dị góc nhìn thứ nhất với đồ họa đỉnh cao. Khám phá bệnh viện bỏ hoang đầy bí ẩn và phải đối mặt với những ác mộng kinh hoàng nhất. Đã Việt hóa 100% bao gồm cả phụ đề và lồng tiếng.",
-    "genre": ["Kinh dị", "Sinh tồn", "Hành động"],
-    "rating": 4.8,
-    "releaseDate": "2024-03-15",
-    "platform": ["PC", "PlayStation 5", "Xbox Series X"],
-    "size": "45 GB",
-    "language": "Tiếng Việt (100%)",
-    "developer": "Horror Studios",
-    "translationStatus": "Hoàn thành",
-    "featured": true,
-    "downloads": 15420,
-    "tags": ["Single Player", "Story Rich", "Atmospheric", "Gore"],
-    "systemRequirements": {
-      "os": "Windows 10/11 64-bit",
-      "processor": "Intel Core i5-8400 / AMD Ryzen 5 2600",
-      "memory": "16 GB RAM",
-      "graphics": "NVIDIA GTX 1060 6GB / AMD RX 580 8GB",
-      "storage": "45 GB"
-    },
-    "trailer": "https://youtube.com/watch?v=example1",
-    "screenshots": [
-      "images/game1-screen1.jpg",
-      "images/game1-screen2.jpg",
-      "images/game1-screen3.jpg"
-    ],
-    "download": "https://example.com/gameA",
-    "alternativeLinks": [
-      {
-        "name": "Google Drive",
-        "url": "https://drive.google.com/example1"
-      },
-      {
-        "name": "Mega.nz",
-        "url": "https://mega.nz/example1"
-      }
-    ]
-  },
-  {
-    "id": "game-002",
-    "title": "The Legend Quest: Rise of Heroes",
-    "image": "images/game2.jpg",
-    "thumbnail": "images/game2-thumb.jpg",
-    "description": "Game nhập vai phiêu lưu thế giới mở với cốt truyện sâu sắc. Hành trình chinh phục vương quốc fantasy đầy ma thuật và quái vật. Dịch thuật chỉn chu, bản địa hóa hoàn chỉnh với hơn 50 giờ gameplay.",
-    "genre": ["RPG", "Phiêu lưu", "Thế giới mở"],
-    "rating": 4.9,
-    "releaseDate": "2024-01-20",
-    "platform": ["PC", "PlayStation 5", "Xbox Series X", "Nintendo Switch"],
-    "size": "68 GB",
-    "language": "Tiếng Việt (100%)",
-    "developer": "Epic Adventures Inc.",
-    "translationStatus": "Hoàn thành",
-    "featured": true,
-    "downloads": 28750,
-    "tags": ["Open World", "RPG", "Fantasy", "Multiplayer", "Co-op"],
-    "systemRequirements": {
-      "os": "Windows 10/11 64-bit",
-      "processor": "Intel Core i7-9700K / AMD Ryzen 7 3700X",
-      "memory": "16 GB RAM",
-      "graphics": "NVIDIA RTX 2060 / AMD RX 5700",
-      "storage": "68 GB SSD"
-    },
-    "trailer": "https://youtube.com/watch?v=example2",
-    "screenshots": [
-      "images/game2-screen1.jpg",
-      "images/game2-screen2.jpg",
-      "images/game2-screen3.jpg"
-    ],
-    "download": "https://example.com/gameB",
-    "alternativeLinks": [
-      {
-        "name": "Google Drive",
-        "url": "https://drive.google.com/example2"
-      },
-      {
-        "name": "MediaFire",
-        "url": "https://mediafire.com/example2"
-      }
-    ]
-  },
-  {
-    "id": "game-003",
-    "title": "Cyberpunk Chronicles 2087",
-    "image": "images/game3.jpg",
-    "thumbnail": "images/game3-thumb.jpg",
-    "description": "Game nhập vai hành động lấy bối cảnh tương lai đen tối. Thành phố Night City đầy rẫy tội phạm và công nghệ tiên tiến. Tùy chỉnh nhân vật sâu sắc với hàng trăm tùy chọn.",
-    "genre": ["RPG", "Hành động", "Sci-fi"],
-    "rating": 4.7,
-    "releaseDate": "2024-05-10",
-    "platform": ["PC", "PlayStation 5", "Xbox Series X"],
-    "size": "72 GB",
-    "language": "Tiếng Việt (100%)",
-    "developer": "Neon Games",
-    "translationStatus": "Hoàn thành",
-    "featured": false,
-    "downloads": 19300,
-    "tags": ["Open World", "Cyberpunk", "Shooter", "Story Rich"],
-    "systemRequirements": {
-      "os": "Windows 10/11 64-bit",
-      "processor": "Intel Core i7-10700K / AMD Ryzen 7 3800X",
-      "memory": "16 GB RAM",
-      "graphics": "NVIDIA RTX 3060 Ti / AMD RX 6700 XT",
-      "storage": "72 GB SSD"
-    },
-    "trailer": "https://youtube.com/watch?v=example3",
-    "screenshots": [
-      "images/game3-screen1.jpg",
-      "images/game3-screen2.jpg"
-    ],
-    "download": "https://example.com/gameC",
-    "alternativeLinks": [
-      {
-        "name": "Torrent",
-        "url": "https://torrent.example.com/game3"
-      }
-    ]
-  },
-  {
-    "id": "game-004",
-    "title": "Mystic Puzzle Academy",
-    "image": "images/game4.jpg",
-    "thumbnail": "images/game4-thumb.jpg",
-    "description": "Game giải đố thông minh với hơn 200 câu đố độc đáo. Phù hợp cho mọi lứa tuổi, rèn luyện tư duy logic và sáng tạo. Giao diện thân thiện, đồ họa đẹp mắt.",
-    "genre": ["Giải đố", "Casual", "Gia đình"],
+    "description": "Game visual novel với cốt truyện hấp dẫn và đồ họa đẹp mắt. Khám phá những tình tiết phức tạp trong mối quan hệ gia đình hiện đại. Đã Việt hóa 100% với bản dịch chỉn chu và tự nhiên.",
+    "genre": ["Visual Novel", "Phiêu lưu", "Mô phỏng"],
     "rating": 4.5,
-    "releaseDate": "2024-02-28",
-    "platform": ["PC", "Mobile", "Nintendo Switch"],
-    "size": "2.5 GB",
+    "releaseDate": "2024-11-15",
+    "platform": ["PC"],
+    "size": "3.2 GB",
     "language": "Tiếng Việt (100%)",
-    "developer": "Puzzle Masters",
+    "developer": "Appetite",
     "translationStatus": "Hoàn thành",
-    "featured": false,
-    "downloads": 42100,
-    "tags": ["Puzzle", "Casual", "Family Friendly", "Relaxing"],
+    "featured": true,
+    "downloads": 8420,
+    "tags": ["Visual Novel", "Story Rich", "Choices Matter", "Adult"],
     "systemRequirements": {
       "os": "Windows 7/8/10/11",
       "processor": "Intel Core i3 / AMD equivalent",
       "memory": "4 GB RAM",
       "graphics": "Integrated Graphics",
-      "storage": "3 GB"
+      "storage": "4 GB"
     },
-    "trailer": "https://youtube.com/watch?v=example4",
+    "trailer": "",
+    "screenshots": [
+      "images/game1-screen1.jpg",
+      "images/game1-screen2.jpg",
+      "images/game1-screen3.jpg"
+    ],
+    "download": "https://example.com/shistaz",
+    "alternativeLinks": [
+      {
+        "name": "Google Drive",
+        "url": "https://drive.google.com/shistaz"
+      },
+      {
+        "name": "Mega.nz",
+        "url": "https://mega.nz/shistaz"
+      }
+    ]
+  },
+  {
+    "id": "game-002",
+    "title": "The Witcher 3: Wild Hunt",
+    "image": "images/game2.jpg",
+    "thumbnail": "images/game2-thumb.jpg",
+    "description": "Game nhập vai phiêu lưu thế giới mở huyền thoại. Theo chân Geralt of Rivia trong hành trình săn lùng con gái nuôi qua vùng đất Slavic đầy ma thuật và quái vật. Dịch thuật hoàn chỉnh với hơn 200 giờ gameplay.",
+    "genre": ["RPG", "Phiêu lưu", "Thế giới mở"],
+    "rating": 4.9,
+    "releaseDate": "2024-01-20",
+    "platform": ["PC", "PlayStation 5", "Xbox Series X", "Nintendo Switch"],
+    "size": "50 GB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "CD Projekt Red",
+    "translationStatus": "Hoàn thành",
+    "featured": true,
+    "downloads": 45750,
+    "tags": ["Open World", "RPG", "Fantasy", "Story Rich", "Atmospheric"],
+    "systemRequirements": {
+      "os": "Windows 10/11 64-bit",
+      "processor": "Intel Core i7-9700K / AMD Ryzen 7 3700X",
+      "memory": "16 GB RAM",
+      "graphics": "NVIDIA GTX 1060 / AMD RX 580",
+      "storage": "50 GB SSD"
+    },
+    "trailer": "https://youtube.com/watch?v=c0i88t0Kacs",
+    "screenshots": [
+      "images/game2-screen1.jpg",
+      "images/game2-screen2.jpg",
+      "images/game2-screen3.jpg"
+    ],
+    "download": "https://example.com/witcher3",
+    "alternativeLinks": [
+      {
+        "name": "Google Drive",
+        "url": "https://drive.google.com/witcher3"
+      },
+      {
+        "name": "MediaFire",
+        "url": "https://mediafire.com/witcher3"
+      }
+    ]
+  },
+  {
+    "id": "game-003",
+    "title": "Cyberpunk 2077",
+    "image": "images/game3.jpg",
+    "thumbnail": "images/game3-thumb.jpg",
+    "description": "Game nhập vai hành động thế giới mở lấy bối cảnh tương lai dystopian. Khám phá Night City đầy rẫy tội phạm, công nghệ và những bí mật đen tối. Tùy chỉnh nhân vật với hàng trăm implant công nghệ sinh học.",
+    "genre": ["RPG", "Hành động", "Thế giới mở"],
+    "rating": 4.7,
+    "releaseDate": "2024-05-10",
+    "platform": ["PC", "PlayStation 5", "Xbox Series X"],
+    "size": "70 GB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "CD Projekt Red",
+    "translationStatus": "Hoàn thành",
+    "featured": true,
+    "downloads": 38300,
+    "tags": ["Open World", "Cyberpunk", "Shooter", "Story Rich", "Sci-fi"],
+    "systemRequirements": {
+      "os": "Windows 10/11 64-bit",
+      "processor": "Intel Core i7-10700K / AMD Ryzen 7 3800X",
+      "memory": "16 GB RAM",
+      "graphics": "NVIDIA RTX 3060 Ti / AMD RX 6700 XT",
+      "storage": "70 GB SSD"
+    },
+    "trailer": "https://youtube.com/watch?v=8X2kIfS6fb8",
+    "screenshots": [
+      "images/game3-screen1.jpg",
+      "images/game3-screen2.jpg"
+    ],
+    "download": "https://example.com/cyberpunk2077",
+    "alternativeLinks": [
+      {
+        "name": "Torrent",
+        "url": "https://torrent.example.com/cyberpunk2077"
+      }
+    ]
+  },
+  {
+    "id": "game-004",
+    "title": "Stardew Valley",
+    "image": "images/game4.jpg",
+    "thumbnail": "images/game4-thumb.jpg",
+    "description": "Game mô phỏng nông trại pixel art với gameplay gây nghiện. Xây dựng trang trại trong mơ, kết giao với cư dân thị trấn, khám phá hang động bí ẩn. Gameplay thư giãn kết hợp yếu tố phiêu lưu nhẹ nhàng.",
+    "genre": ["Mô phỏng", "Nông trại", "RPG"],
+    "rating": 4.9,
+    "releaseDate": "2024-02-28",
+    "platform": ["PC", "Mobile", "Nintendo Switch", "PlayStation", "Xbox"],
+    "size": "500 MB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "ConcernedApe",
+    "translationStatus": "Hoàn thành",
+    "featured": true,
+    "downloads": 67100,
+    "tags": ["Simulation", "Farming", "Pixel Art", "Relaxing", "Multiplayer"],
+    "systemRequirements": {
+      "os": "Windows 7/8/10/11",
+      "processor": "Intel Core 2 Duo / AMD equivalent",
+      "memory": "2 GB RAM",
+      "graphics": "Integrated Graphics",
+      "storage": "500 MB"
+    },
+    "trailer": "https://youtube.com/watch?v=ot7uXNQskhs",
     "screenshots": [
       "images/game4-screen1.jpg"
     ],
-    "download": "https://example.com/gameD",
-    "alternativeLinks": []
+    "download": "https://example.com/stardewvalley",
+    "alternativeLinks": [
+      {
+        "name": "Google Drive",
+        "url": "https://drive.google.com/stardewvalley"
+      }
+    ]
   },
   {
     "id": "game-005",
-    "title": "Warrior's Path: Shadow Combat",
+    "title": "Elden Ring",
     "image": "images/game5.jpg",
     "thumbnail": "images/game5-thumb.jpg",
-    "description": "Game đối kháng 2D với hệ thống combo đỉnh cao. 30+ nhân vật độc đáo, mỗi người có phong cách chiến đấu riêng biệt. Chế độ online hỗ trợ đấu với bạn bè.",
-    "genre": ["Đối kháng", "Hành động", "2D"],
-    "rating": 4.6,
+    "description": "Game nhập vai hành động thế giới mở từ FromSoftware và George R.R. Martin. Khám phá vùng đất Lands Between rộng lớn, đối mặt với những boss đầy thách thức. Độ khó cao kết hợp lối chơi souls-like kinh điển.",
+    "genre": ["RPG", "Hành động", "Souls-like"],
+    "rating": 4.8,
     "releaseDate": "2024-04-05",
-    "platform": ["PC", "PlayStation 4/5", "Xbox", "Nintendo Switch"],
-    "size": "15 GB",
+    "platform": ["PC", "PlayStation 4", "PlayStation 5", "Xbox Series X"],
+    "size": "60 GB",
     "language": "Tiếng Việt (100%)",
-    "developer": "Combat Studios",
+    "developer": "FromSoftware",
     "translationStatus": "Hoàn thành",
     "featured": true,
-    "downloads": 33800,
-    "tags": ["Fighting", "Multiplayer", "Competitive", "2D Fighter"],
+    "downloads": 52800,
+    "tags": ["Souls-like", "Open World", "Challenging", "Dark Fantasy", "Boss Battles"],
     "systemRequirements": {
       "os": "Windows 10/11 64-bit",
-      "processor": "Intel Core i5-6600K / AMD Ryzen 3 1300X",
-      "memory": "8 GB RAM",
-      "graphics": "NVIDIA GTX 960 / AMD RX 560",
-      "storage": "15 GB"
+      "processor": "Intel Core i7-8700K / AMD Ryzen 5 3600",
+      "memory": "16 GB RAM",
+      "graphics": "NVIDIA GTX 1070 / AMD RX Vega 56",
+      "storage": "60 GB"
     },
-    "trailer": "https://youtube.com/watch?v=example5",
+    "trailer": "https://youtube.com/watch?v=E3Huy2cdih0",
     "screenshots": [
       "images/game5-screen1.jpg",
       "images/game5-screen2.jpg",
       "images/game5-screen3.jpg",
       "images/game5-screen4.jpg"
     ],
-    "download": "https://example.com/gameE",
+    "download": "https://example.com/eldenring",
     "alternativeLinks": [
       {
-        "name": "Steam",
-        "url": "https://store.steampowered.com/example5"
+        "name": "Google Drive",
+        "url": "https://drive.google.com/eldenring"
+      },
+      {
+        "name": "Mega.nz",
+        "url": "https://mega.nz/eldenring"
       }
     ]
   },
   {
     "id": "game-006",
-    "title": "Farming Paradise: Seasons",
+    "title": "Hollow Knight",
     "image": "images/game6.jpg",
     "thumbnail": "images/game6-thumb.jpg",
-    "description": "Game mô phỏng nông trại yên bình. Trồng trọt, chăn nuôi, xây dựng trang trại trong mơ của bạn. Kết hôn, sinh con và phát triển cộng đồng nông thôn.",
-    "genre": ["Mô phỏng", "Nông trại", "Casual"],
+    "description": "Game platformer metroidvania 2D với đồ họa vẽ tay tuyệt đẹp. Khám phá vương quốc Hallownest sâu thẳm dưới lòng đất, đối đầu với côn trùng khổng lồ. Gameplay thách thức kết hợp khám phá phi tuyến tính.",
+    "genre": ["Platformer", "Metroidvania", "Hành động"],
     "rating": 4.9,
     "releaseDate": "2024-06-15",
-    "platform": ["PC", "Mobile", "Nintendo Switch"],
-    "size": "8 GB",
+    "platform": ["PC", "Nintendo Switch", "PlayStation 4", "Xbox One"],
+    "size": "9 GB",
     "language": "Tiếng Việt (100%)",
-    "developer": "Harvest Games",
+    "developer": "Team Cherry",
     "translationStatus": "Hoàn thành",
     "featured": false,
-    "downloads": 51200,
-    "tags": ["Simulation", "Farming", "Relaxing", "Multiplayer"],
+    "downloads": 43200,
+    "tags": ["Metroidvania", "2D Platformer", "Exploration", "Atmospheric", "Challenging"],
     "systemRequirements": {
       "os": "Windows 7/8/10/11",
       "processor": "Intel Core i3 / AMD equivalent",
       "memory": "4 GB RAM",
-      "graphics": "NVIDIA GTX 750 / AMD equivalent",
-      "storage": "8 GB"
+      "graphics": "NVIDIA GTX 560 / AMD equivalent",
+      "storage": "9 GB"
     },
-    "trailer": "https://youtube.com/watch?v=example6",
+    "trailer": "https://youtube.com/watch?v=UAO2urG23S4",
     "screenshots": [
       "images/game6-screen1.jpg",
       "images/game6-screen2.jpg"
     ],
-    "download": "https://example.com/gameF",
+    "download": "https://example.com/hollowknight",
     "alternativeLinks": [
       {
         "name": "Google Drive",
-        "url": "https://drive.google.com/example6"
+        "url": "https://drive.google.com/hollowknight"
+      }
+    ]
+  },
+  {
+    "id": "game-007",
+    "title": "Resident Evil 4 Remake",
+    "image": "images/game7.jpg",
+    "thumbnail": "images/game7-thumb.jpg",
+    "description": "Bản remake hoàn toàn của tựa game kinh dị sinh tồn huyền thoại. Leon S. Kennedy giải cứu con gái tổng thống khỏi giáo phái tà giáo ở châu Âu. Đồ họa RE Engine đỉnh cao với gameplay được cải tiến toàn diện.",
+    "genre": ["Kinh dị", "Sinh tồn", "Hành động"],
+    "rating": 4.8,
+    "releaseDate": "2024-09-20",
+    "platform": ["PC", "PlayStation 5", "Xbox Series X"],
+    "size": "67 GB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "Capcom",
+    "translationStatus": "Hoàn thành",
+    "featured": true,
+    "downloads": 41500,
+    "tags": ["Horror", "Survival", "Third Person", "Action", "Remake"],
+    "systemRequirements": {
+      "os": "Windows 10/11 64-bit",
+      "processor": "Intel Core i7-8700 / AMD Ryzen 5 3600",
+      "memory": "16 GB RAM",
+      "graphics": "NVIDIA GTX 1070 / AMD RX 5700",
+      "storage": "67 GB SSD"
+    },
+    "trailer": "https://youtube.com/watch?v=E69tKrfEQag",
+    "screenshots": [
+      "images/game7-screen1.jpg",
+      "images/game7-screen2.jpg",
+      "images/game7-screen3.jpg"
+    ],
+    "download": "https://example.com/re4remake",
+    "alternativeLinks": [
+      {
+        "name": "Google Drive",
+        "url": "https://drive.google.com/re4remake"
+      },
+      {
+        "name": "Mega.nz",
+        "url": "https://mega.nz/re4remake"
+      }
+    ]
+  },
+  {
+    "id": "game-008",
+    "title": "Persona 5 Royal",
+    "image": "images/game8.jpg",
+    "thumbnail": "images/game8-thumb.jpg",
+    "description": "JRPG phong cách độc đáo kết hợp giữa cuộc sống học đường và khám phá cung điện tâm linh. Tham gia Phantom Thieves đánh cắp trái tim những kẻ tội ác. Với nghệ thuật UI đẳng cấp và nhạc nền xuất sắc.",
+    "genre": ["JRPG", "Phiêu lưu", "Mô phỏng"],
+    "rating": 4.9,
+    "releaseDate": "2024-07-12",
+    "platform": ["PC", "PlayStation 5", "Nintendo Switch"],
+    "size": "41 GB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "Atlus",
+    "translationStatus": "Hoàn thành",
+    "featured": true,
+    "downloads": 36900,
+    "tags": ["JRPG", "Turn-Based", "Story Rich", "Anime", "Social Sim"],
+    "systemRequirements": {
+      "os": "Windows 10/11 64-bit",
+      "processor": "Intel Core i7-4790 / AMD Ryzen 5 1500X",
+      "memory": "8 GB RAM",
+      "graphics": "NVIDIA GTX 650 Ti / AMD Radeon HD 7790",
+      "storage": "41 GB"
+    },
+    "trailer": "https://youtube.com/watch?v=QxW7zVseYPw",
+    "screenshots": [
+      "images/game8-screen1.jpg",
+      "images/game8-screen2.jpg"
+    ],
+    "download": "https://example.com/persona5royal",
+    "alternativeLinks": [
+      {
+        "name": "Google Drive",
+        "url": "https://drive.google.com/persona5royal"
+      }
+    ]
+  },
+  {
+    "id": "game-009",
+    "title": "Red Dead Redemption 2",
+    "image": "images/game9.jpg",
+    "thumbnail": "images/game9-thumb.jpg",
+    "description": "Game thế giới mở miền Tây hoang dã với độ chi tiết vượt trội. Theo chân Arthur Morgan và băng đảng Van der Linde trong thời kỳ suy tàn của cao bồi. Cốt truyện cảm động với gameplay phong phú không giới hạn.",
+    "genre": ["Hành động", "Phiêu lưu", "Thế giới mở"],
+    "rating": 4.9,
+    "releaseDate": "2024-08-18",
+    "platform": ["PC", "PlayStation 4", "Xbox One"],
+    "size": "150 GB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "Rockstar Games",
+    "translationStatus": "Hoàn thành",
+    "featured": true,
+    "downloads": 58700,
+    "tags": ["Open World", "Western", "Story Rich", "Atmospheric", "Multiplayer"],
+    "systemRequirements": {
+      "os": "Windows 10/11 64-bit",
+      "processor": "Intel Core i7-4770K / AMD Ryzen 5 1500X",
+      "memory": "12 GB RAM",
+      "graphics": "NVIDIA GTX 1060 6GB / AMD RX 480 4GB",
+      "storage": "150 GB"
+    },
+    "trailer": "https://youtube.com/watch?v=gmA6MrX81z4",
+    "screenshots": [
+      "images/game9-screen1.jpg",
+      "images/game9-screen2.jpg",
+      "images/game9-screen3.jpg"
+    ],
+    "download": "https://example.com/rdr2",
+    "alternativeLinks": [
+      {
+        "name": "Torrent",
+        "url": "https://torrent.example.com/rdr2"
+      }
+    ]
+  },
+  {
+    "id": "game-010",
+    "title": "Baldur's Gate 3",
+    "image": "images/game10.jpg",
+    "thumbnail": "images/game10-thumb.jpg",
+    "description": "CRPG thế hệ mới dựa trên D&D 5e với tự do lựa chọn tuyệt đối. Tạo nhân vật theo ý thích và khám phá Forgotten Realms. Mỗi quyết định đều ảnh hưởng sâu sắc đến cốt truyện và thế giới xung quanh.",
+    "genre": ["CRPG", "RPG", "Chiến thuật"],
+    "rating": 4.9,
+    "releaseDate": "2024-10-05",
+    "platform": ["PC", "PlayStation 5", "Xbox Series X"],
+    "size": "122 GB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "Larian Studios",
+    "translationStatus": "Hoàn thành",
+    "featured": true,
+    "downloads": 47200,
+    "tags": ["CRPG", "D&D", "Turn-Based", "Story Rich", "Choices Matter"],
+    "systemRequirements": {
+      "os": "Windows 10/11 64-bit",
+      "processor": "Intel Core i7-8700K / AMD Ryzen 5 3600",
+      "memory": "16 GB RAM",
+      "graphics": "NVIDIA RTX 2060 / AMD RX 5700",
+      "storage": "122 GB SSD"
+    },
+    "trailer": "https://youtube.com/watch?v=OcP0WdH7rTs",
+    "screenshots": [
+      "images/game10-screen1.jpg",
+      "images/game10-screen2.jpg"
+    ],
+    "download": "https://example.com/baldursgate3",
+    "alternativeLinks": [
+      {
+        "name": "Google Drive",
+        "url": "https://drive.google.com/baldursgate3"
+      },
+      {
+        "name": "Mega.nz",
+        "url": "https://mega.nz/baldursgate3"
       }
     ]
   }
