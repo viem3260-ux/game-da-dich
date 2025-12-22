@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Game Đã Dịch - Gaming Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background animated gradient -->
+    <div class="bg-gradient"></div>
+    
+    <!-- Floating particles effect -->
+    <div class="particles">
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+    </div>
+
+    <!-- Hero Header -->
+    <header class="hero-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">🎮</div>
+                    <div>
+                        <h1 class="main-title">Game Collection</h1>
+                        <p class="subtitle">Game đã được Việt hóa</p>
+                    </div>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="game-count">0</span>
+                            <span class="stat-label">Games</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="total-rating">0</span>
+                            <span class="stat-label">Avg Rating</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search & Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="search-bar">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        placeholder="Tìm kiếm game theo tên, thể loại..."
+                        autocomplete="off"
+                    >
+                    <button class="clear-search" id="clear-search" style="display: none;">✕</button>
+                </div>
+            </div>
+            
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label class="filter-label">Sắp xếp:</label>
+                    <select id="sort-select" class="filter-select">
+                        <option value="name">Tên A-Z</option>
+                        <option value="name-desc">Tên Z-A</option>
+                        <option value="rating">Đánh giá cao nhất</option>
+                        <option value="rating-asc">Đánh giá thấp nhất</option>
+                        <option value="newest">Mới nhất</option>
+                    </select>
+                </div>
+                
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid" title="Grid view">
+                        <span class="view-icon">▦</span>
+                    </button>
+                    <button class="view-btn" data-view="list" title="List view">
+                        <span class="view-icon">☰</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Loading state -->
+            <div id="loading-state" class="loading-state">
+                <div class="loading-spinner"></div>
+                <p>Đang tải danh sách game...</p>
+            </div>
+            
+            <!-- Empty state -->
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <div class="empty-icon">🎮</div>
+                <h3>Không tìm thấy game nào</h3>
+                <p>Thử tìm kiếm với từ khóa khác</p>
+            </div>
+            
+            <!-- Game Grid -->
+            <div id="game-list" class="game-grid">
+                <!-- Games will be injected here by JS -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Game Collection. Made with ❤️ by gamers, for gamers</p>
+            <p class="footer-links">
+                <a href="#" class="footer-link">About</a>
+                <a href="#" class="footer-link">Contact</a>
+                <a href="#" class="footer-link">Contribute</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <button id="scroll-top" class="scroll-top" title="Lên đầu trang">
+        <span>↑</span>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
