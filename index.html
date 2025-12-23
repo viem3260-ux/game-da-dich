@@ -5,7 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách Game Đã Dịch - GAMEDUCVONG</title>
     <link rel="stylesheet" href="style.css">
-    <meta name="description" content="Thư viện game Việt hóa chất lượng cao từ GAMEDUCVONG">
+    <meta name="description" content="Thư viện game Việt hóa chất lượng cao từ GAMEDUCVONG - Hơn 25 game AAA đã Việt hóa 100%">
+    <meta name="keywords" content="game việt hóa, game dịch tiếng việt, GAMEDUCVONG, download game, game PC">
+    <meta property="og:title" content="GAMEDUCVONG - Game Việt Hóa Chất Lượng Cao">
+    <meta property="og:description" content="Thư viện game Việt hóa chất lượng cao với hơn 25 game AAA">
+    <meta property="og:image" content="images/game1.jpg">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="game.json" as="fetch" crossorigin="anonymous">
+    <link rel="preconnect" href="https://via.placeholder.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Advanced Background Effects -->
@@ -23,6 +36,10 @@
         <span class="particle"></span>
         <span class="particle"></span>
         <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
     </div>
     
     <!-- Floating geometric shapes -->
@@ -31,10 +48,39 @@
         <div class="shape shape-2"></div>
         <div class="shape shape-3"></div>
         <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+        <div class="shape shape-6"></div>
     </div>
 
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <div class="nav-logo">GDV</div>
+                    <span class="nav-title">GAMEDUCVONG</span>
+                </div>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#home" class="nav-link active" data-section="home">🏠 Trang chủ</a>
+                    <a href="#games" class="nav-link" data-section="games">🎮 Game</a>
+                    <a href="#featured" class="nav-link" data-section="featured">⭐ Nổi bật</a>
+                    <a href="#genres" class="nav-link" data-section="genres">📂 Thể loại</a>
+                    <a href="#about" class="nav-link" data-section="about">ℹ️ Giới thiệu</a>
+                    <a href="#contact" class="nav-link" data-section="contact">📞 Liên hệ</a>
+                </div>
+                
+                <div class="nav-actions">
+                    <button class="nav-search-btn" id="nav-search-btn" title="Tìm kiếm">🔍</button>
+                    <button class="nav-theme-btn" id="nav-theme-btn" title="Chuyển theme">🌙</button>
+                    <button class="nav-menu-btn" id="nav-menu-btn" title="Menu">☰</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <!-- Hero Header -->
-    <header class="hero-header">
+    <header class="hero-header" id="home">
         <div class="container">
             <div class="header-content">
                 <div class="logo-section">
@@ -45,6 +91,11 @@
                     <div class="brand-info">
                         <h1 class="main-title">GAMEDUCVONG</h1>
                         <p class="subtitle">Game Việt Hóa Chất Lượng Cao</p>
+                        <div class="brand-features">
+                            <span class="feature-badge">✅ 100% Việt hóa</span>
+                            <span class="feature-badge">🚀 Cập nhật liên tục</span>
+                            <span class="feature-badge">💎 Chất lượng cao</span>
+                        </div>
                         <div class="social-links">
                             <a href="https://www.facebook.com/share/1GCT3nGne5/" target="_blank" rel="noopener" class="social-btn official">
                                 <span class="btn-icon">📘</span>
@@ -75,29 +126,80 @@
                             <span class="stat-label">Đánh Giá TB</span>
                         </div>
                     </div>
+                    <div class="stat-card">
+                        <div class="stat-glow"></div>
+                        <div class="stat-content">
+                            <span class="stat-value" id="total-downloads">0</span>
+                            <span class="stat-label">Lượt Tải</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">⬇</div>
+            <span class="scroll-text">Cuộn xuống để khám phá</span>
+        </div>
     </header>
 
-    <!-- Search & Filter Section -->
-    <section class="filter-section">
+    <!-- Quick Stats Bar -->
+    <section class="quick-stats">
         <div class="container">
-            <!-- Search & Filter Section with Advanced UI -->
+            <div class="quick-stats-grid">
+                <div class="quick-stat">
+                    <div class="quick-stat-icon">🎮</div>
+                    <div class="quick-stat-info">
+                        <span class="quick-stat-value" id="quick-games">25+</span>
+                        <span class="quick-stat-label">Games</span>
+                    </div>
+                </div>
+                <div class="quick-stat">
+                    <div class="quick-stat-icon">🌟</div>
+                    <div class="quick-stat-info">
+                        <span class="quick-stat-value">4.8</span>
+                        <span class="quick-stat-label">Rating</span>
+                    </div>
+                </div>
+                <div class="quick-stat">
+                    <div class="quick-stat-icon">⬇️</div>
+                    <div class="quick-stat-info">
+                        <span class="quick-stat-value" id="quick-downloads">1M+</span>
+                        <span class="quick-stat-label">Downloads</span>
+                    </div>
+                </div>
+                <div class="quick-stat">
+                    <div class="quick-stat-icon">🇻🇳</div>
+                    <div class="quick-stat-info">
+                        <span class="quick-stat-value">100%</span>
+                        <span class="quick-stat-label">Việt hóa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search & Filter Section -->
+    <section class="filter-section" id="games">
+        <div class="container">
+            <!-- Advanced Search Bar -->
             <div class="search-bar">
                 <div class="search-input-wrapper">
                     <div class="search-icon">🔍</div>
                     <input 
                         type="text" 
                         id="search-input" 
-                        placeholder="Tìm kiếm game theo tên, thể loại..."
+                        placeholder="Tìm kiếm game theo tên, thể loại, developer..."
                         autocomplete="off"
                     >
                     <button class="clear-search" id="clear-search" style="display: none;">✕</button>
                     <div class="search-suggestions" id="search-suggestions"></div>
                 </div>
+                <button class="voice-search-btn" id="voice-search-btn" title="Tìm kiếm bằng giọng nói">🎤</button>
             </div>
             
+            <!-- Advanced Filter Controls -->
             <div class="filter-controls">
                 <div class="filter-group">
                     <label class="filter-label">Sắp xếp</label>
@@ -107,6 +209,34 @@
                         <option value="rating">Đánh giá cao nhất</option>
                         <option value="rating-asc">Đánh giá thấp nhất</option>
                         <option value="newest">Mới nhất</option>
+                        <option value="downloads">Tải nhiều nhất</option>
+                        <option value="size">Dung lượng nhỏ nhất</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Thể loại</label>
+                    <select id="genre-filter" class="filter-select">
+                        <option value="">Tất cả thể loại</option>
+                        <option value="RPG">RPG</option>
+                        <option value="Hành động">Hành động</option>
+                        <option value="Phiêu lưu">Phiêu lưu</option>
+                        <option value="Thế giới mở">Thế giới mở</option>
+                        <option value="FPS">FPS</option>
+                        <option value="Visual Novel">Visual Novel</option>
+                        <option value="Indie">Indie</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Nền tảng</label>
+                    <select id="platform-filter" class="filter-select">
+                        <option value="">Tất cả nền tảng</option>
+                        <option value="PC">PC</option>
+                        <option value="PlayStation">PlayStation</option>
+                        <option value="Xbox">Xbox</option>
+                        <option value="Nintendo Switch">Nintendo Switch</option>
+                        <option value="Mobile">Mobile</option>
                     </select>
                 </div>
                 
@@ -120,7 +250,20 @@
                     <button class="view-btn" data-view="compact" title="Xem dạng compact">
                         <span class="view-icon">▦</span>
                     </button>
+                    <button class="view-btn" data-view="cards" title="Xem dạng thẻ">
+                        <span class="view-icon">🃏</span>
+                    </button>
                 </div>
+            </div>
+            
+            <!-- Filter Tags -->
+            <div class="filter-tags" id="filter-tags">
+                <span class="filter-tag-label">Lọc nhanh:</span>
+                <button class="filter-tag" data-filter="featured">⭐ Nổi bật</button>
+                <button class="filter-tag" data-filter="new">🆕 Mới</button>
+                <button class="filter-tag" data-filter="popular">🔥 Phổ biến</button>
+                <button class="filter-tag" data-filter="small">📦 Nhẹ</button>
+                <button class="filter-tag" data-filter="free">💰 Miễn phí</button>
             </div>
         </div>
     </section>
@@ -136,25 +279,120 @@
             
             <!-- Empty state -->
             <div id="empty-state" class="empty-state" style="display: none;">
+                <div class="empty-icon">😔</div>
                 <h3>Không tìm thấy game nào</h3>
-                <p>Thử tìm kiếm với từ khóa khác</p>
+                <p>Thử tìm kiếm với từ khóa khác hoặc thay đổi bộ lọc</p>
+                <button class="reset-filters-btn" id="reset-filters">🔄 Đặt lại bộ lọc</button>
             </div>
             
             <!-- Game Grid -->
             <div id="game-list" class="game-grid">
                 <!-- Games will be injected here by JS -->
             </div>
+            
+            <!-- Load More Button -->
+            <div class="load-more-container" id="load-more-container" style="display: none;">
+                <button class="load-more-btn" id="load-more-btn">
+                    <span class="load-more-text">Tải thêm game</span>
+                    <span class="load-more-icon">⬇️</span>
+                </button>
+            </div>
         </div>
     </main>
 
+    <!-- Featured Games Section -->
+    <section class="featured-section" id="featured">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🌟 Game Nổi Bật</h2>
+                <p class="section-subtitle">Những tựa game được đánh giá cao nhất</p>
+            </div>
+            <div class="featured-grid" id="featured-grid">
+                <!-- Featured games will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Genres Section -->
+    <section class="genres-section" id="genres">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">📂 Thể Loại Game</h2>
+                <p class="section-subtitle">Khám phá game theo thể loại yêu thích</p>
+            </div>
+            <div class="genres-grid" id="genres-grid">
+                <!-- Genres will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">Về GAMEDUCVONG</h2>
+                    <p class="about-description">
+                        GAMEDUCVONG là đơn vị tiên phong trong lĩnh vực Việt hóa game chất lượng cao tại Việt Nam. 
+                        Với đội ngũ dịch thuật chuyên nghiệp và đam mê game, chúng tôi cam kết mang đến những 
+                        bản dịch chính xác, tự nhiên và giữ nguyên tinh thần của tác phẩm gốc.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="feature-icon">✅</div>
+                            <div class="feature-content">
+                                <h4>Chất lượng đảm bảo</h4>
+                                <p>100% Việt hóa với bản dịch chỉn chu</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon">🚀</div>
+                            <div class="feature-content">
+                                <h4>Cập nhật nhanh</h4>
+                                <p>Luôn cập nhật game mới nhất</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon">💎</div>
+                            <div class="feature-content">
+                                <h4>Miễn phí</h4>
+                                <p>Tất cả game đều free download</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="about-stat">
+                        <span class="about-stat-value">25+</span>
+                        <span class="about-stat-label">Game đã dịch</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="about-stat-value">1M+</span>
+                        <span class="about-stat-label">Lượt tải</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="about-stat-value">50K+</span>
+                        <span class="about-stat-label">Thành viên</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
                     <div class="footer-logo">GDV</div>
                     <h3>GAMEDUCVONG</h3>
                     <p>Đơn vị tiên phong trong lĩnh vực Việt hóa game chất lượng cao</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/share/1GCT3nGne5/" target="_blank" rel="noopener" class="footer-social-btn" title="Admin Chính Chủ">F</a>
+                        <a href="https://www.facebook.com/groups/1989187598586537/" target="_blank" rel="noopener" class="footer-social-btn" title="Nhóm Facebook">G</a>
+                        <a href="#" class="footer-social-btn" title="Discord">D</a>
+                        <a href="#" class="footer-social-btn" title="Telegram">T</a>
+                    </div>
                 </div>
                 
                 <div class="footer-section">
@@ -162,6 +400,8 @@
                     <ul>
                         <li><a href="https://www.facebook.com/share/1GCT3nGne5/" target="_blank" rel="noopener">Admin Chính Chủ</a></li>
                         <li><a href="https://www.facebook.com/groups/1989187598586537/" target="_blank" rel="noopener">Nhóm Facebook</a></li>
+                        <li><a href="#games">Danh sách Game</a></li>
+                        <li><a href="#featured">Game nổi bật</a></li>
                     </ul>
                 </div>
                 
@@ -171,27 +411,30 @@
                         <li><a href="#about">Về Chúng Tôi</a></li>
                         <li><a href="#contact">Liên Hệ</a></li>
                         <li><a href="#contribute">Đóng Góp</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
                     <h4>Cộng Đồng</h4>
                     <p class="footer-description">Tham gia cộng đồng GAMEDUCVONG để nhận tin tức mới nhất về các bản dịch game</p>
-                    <div class="footer-social">
-                        <a href="https://www.facebook.com/share/1GCT3nGne5/" target="_blank" rel="noopener" class="footer-social-btn" title="Admin Chính Chủ">F</a>
-                        <a href="https://www.facebook.com/groups/1989187598586537/" target="_blank" rel="noopener" class="footer-social-btn" title="Nhóm Facebook">G</a>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Email của bạn..." class="newsletter-input">
+                        <button class="newsletter-btn">Đăng ký</button>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
                 <p>&copy; 2024 GAMEDUCVONG. Tất cả game Việt hóa đều thuộc quyền sở hữu của nhóm</p>
-                <p class="footer-credits">Designed with passion for gaming community</p>
+                <p class="footer-credits">Designed with passion for gaming community ❤️</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scroll to top button with enhanced design -->
+    <!-- Enhanced UI Elements -->
+    
+    <!-- Scroll to top button -->
     <button id="scroll-top" class="scroll-top" title="Lên đầu trang">
         <span class="scroll-arrow">⬆</span>
         <div class="scroll-progress"></div>
@@ -202,6 +445,43 @@
         <span class="theme-icon">🌙</span>
     </button>
 
+    <!-- Settings Panel -->
+    <div class="settings-panel" id="settings-panel">
+        <div class="settings-header">
+            <h3>⚙️ Cài đặt</h3>
+            <button class="settings-close" id="settings-close">✕</button>
+        </div>
+        <div class="settings-content">
+            <div class="setting-group">
+                <label>Theme</label>
+                <div class="theme-options">
+                    <button class="theme-option active" data-theme="dark">🌙 Tối</button>
+                    <button class="theme-option" data-theme="light">☀️ Sáng</button>
+                    <button class="theme-option" data-theme="auto">🔄 Auto</button>
+                </div>
+            </div>
+            <div class="setting-group">
+                <label>Hiệu ứng</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="animations-toggle" checked>
+                    <label for="animations-toggle">Bật hiệu ứng</label>
+                </div>
+            </div>
+            <div class="setting-group">
+                <label>Âm thanh</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="sound-toggle" checked>
+                    <label for="sound-toggle">Bật âm thanh</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Button -->
+    <button id="settings-btn" class="settings-btn" title="Cài đặt">
+        <span class="settings-icon">⚙️</span>
+    </button>
+
     <!-- Loading Overlay -->
     <div id="loading-overlay" class="loading-overlay">
         <div class="loading-content">
@@ -209,6 +489,22 @@
             <div class="loading-text">Đang tải game...</div>
             <div class="loading-bar">
                 <div class="loading-progress"></div>
+            </div>
+            <div class="loading-tips" id="loading-tips">
+                <p>💡 Mẹo: Sử dụng Ctrl+F để tìm kiếm nhanh game yêu thích</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Game Detail Modal -->
+    <div class="modal-overlay" id="game-modal-overlay">
+        <div class="game-modal" id="game-modal">
+            <button class="modal-close" id="modal-close">✕</button>
+            <div class="modal-content" id="modal-content">
+                <!-- Game details will be loaded here -->
             </div>
         </div>
     </div>
