@@ -29,23 +29,23 @@
       "images/game1-screen2.jpg",
       "images/game1-screen3.jpg"
     ],
-    "download": "https://example.com/shistaz",
+    "download": "https://drive.google.com/file/d/1ABC123/view?usp=sharing",
     "alternativeLinks": [
       {
         "name": "Google Drive",
-        "url": "https://drive.google.com/shistaz"
+        "url": "https://drive.google.com/file/d/1shistaz123/view?usp=sharing"
       },
       {
         "name": "Mega.nz",
-        "url": "https://mega.nz/shistaz"
+        "url": "https://mega.nz/file/shistaz456"
       }
     ]
   },
   {
     "id": "game-002",
     "title": "The Witcher 3: Wild Hunt",
-    "image": "images/game2.jpg",
-    "thumbnail": "images/game2-thumb.jpg",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=The+Witcher+3",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=Witcher+3",
     "description": "Game nhập vai phiêu lưu thế giới mở huyền thoại. Theo chân Geralt of Rivia trong hành trình săn lùng con gái nuôi qua vùng đất Slavic đầy ma thuật và quái vật. Dịch thuật hoàn chỉnh với hơn 200 giờ gameplay.",
     "genre": ["RPG", "Phiêu lưu", "Thế giới mở"],
     "rating": 4.9,
@@ -71,23 +71,23 @@
       "images/game2-screen2.jpg",
       "images/game2-screen3.jpg"
     ],
-    "download": "https://example.com/witcher3",
+    "download": "https://drive.google.com/file/d/1DEF456/view?usp=sharing",
     "alternativeLinks": [
       {
         "name": "Google Drive",
-        "url": "https://drive.google.com/witcher3"
+        "url": "https://drive.google.com/file/d/1witcher3123/view?usp=sharing"
       },
       {
         "name": "MediaFire",
-        "url": "https://mediafire.com/witcher3"
+        "url": "https://mediafire.com/file/witcher3456/download"
       }
     ]
   },
   {
     "id": "game-003",
     "title": "Cyberpunk 2077",
-    "image": "images/game3.jpg",
-    "thumbnail": "images/game3-thumb.jpg",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Cyberpunk+2077",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=Cyberpunk",
     "description": "Game nhập vai hành động thế giới mở lấy bối cảnh tương lai dystopian. Khám phá Night City đầy rẫy tội phạm, công nghệ và những bí mật đen tối. Tùy chỉnh nhân vật với hàng trăm implant công nghệ sinh học.",
     "genre": ["RPG", "Hành động", "Thế giới mở"],
     "rating": 4.7,
@@ -112,7 +112,7 @@
       "images/game3-screen1.jpg",
       "images/game3-screen2.jpg"
     ],
-    "download": "https://example.com/cyberpunk2077",
+    "download": "https://mega.nz/file/ABC123XYZ",
     "alternativeLinks": [
       {
         "name": "Torrent",
@@ -123,8 +123,8 @@
   {
     "id": "game-004",
     "title": "Stardew Valley",
-    "image": "images/game4.jpg",
-    "thumbnail": "images/game4-thumb.jpg",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Stardew+Valley",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=Stardew",
     "description": "Game mô phỏng nông trại pixel art với gameplay gây nghiện. Xây dựng trang trại trong mơ, kết giao với cư dân thị trấn, khám phá hang động bí ẩn. Gameplay thư giãn kết hợp yếu tố phiêu lưu nhẹ nhàng.",
     "genre": ["Mô phỏng", "Nông trại", "RPG"],
     "rating": 4.9,
@@ -148,7 +148,7 @@
     "screenshots": [
       "images/game4-screen1.jpg"
     ],
-    "download": "https://example.com/stardewvalley",
+    "download": "https://drive.google.com/file/d/1GHI789/view?usp=sharing",
     "alternativeLinks": [
       {
         "name": "Google Drive",
@@ -159,8 +159,8 @@
   {
     "id": "game-005",
     "title": "Elden Ring",
-    "image": "images/game5.jpg",
-    "thumbnail": "images/game5-thumb.jpg",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Elden+Ring",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=Elden+Ring",
     "description": "Game nhập vai hành động thế giới mở từ FromSoftware và George R.R. Martin. Khám phá vùng đất Lands Between rộng lớn, đối mặt với những boss đầy thách thức. Độ khó cao kết hợp lối chơi souls-like kinh điển.",
     "genre": ["RPG", "Hành động", "Souls-like"],
     "rating": 4.8,
@@ -187,7 +187,7 @@
       "images/game5-screen3.jpg",
       "images/game5-screen4.jpg"
     ],
-    "download": "https://example.com/eldenring",
+    "download": "https://mega.nz/file/DEF456ABC",
     "alternativeLinks": [
       {
         "name": "Google Drive",
@@ -202,8 +202,8 @@
   {
     "id": "game-006",
     "title": "Hollow Knight",
-    "image": "images/game6.jpg",
-    "thumbnail": "images/game6-thumb.jpg",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Hollow+Knight",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=Hollow+Knight",
     "description": "Game platformer metroidvania 2D với đồ họa vẽ tay tuyệt đẹp. Khám phá vương quốc Hallownest sâu thẳm dưới lòng đất, đối đầu với côn trùng khổng lồ. Gameplay thách thức kết hợp khám phá phi tuyến tính.",
     "genre": ["Platformer", "Metroidvania", "Hành động"],
     "rating": 4.9,
@@ -228,7 +228,7 @@
       "images/game6-screen1.jpg",
       "images/game6-screen2.jpg"
     ],
-    "download": "https://example.com/hollowknight",
+    "download": "https://drive.google.com/file/d/1JKL012/view?usp=sharing",
     "alternativeLinks": [
       {
         "name": "Google Drive",
@@ -239,8 +239,8 @@
   {
     "id": "game-007",
     "title": "Resident Evil 4 Remake",
-    "image": "images/game7.jpg",
-    "thumbnail": "images/game7-thumb.jpg",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=RE4+Remake",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=RE4",
     "description": "Bản remake hoàn toàn của tựa game kinh dị sinh tồn huyền thoại. Leon S. Kennedy giải cứu con gái tổng thống khỏi giáo phái tà giáo ở châu Âu. Đồ họa RE Engine đỉnh cao với gameplay được cải tiến toàn diện.",
     "genre": ["Kinh dị", "Sinh tồn", "Hành động"],
     "rating": 4.8,
@@ -266,7 +266,7 @@
       "images/game7-screen2.jpg",
       "images/game7-screen3.jpg"
     ],
-    "download": "https://example.com/re4remake",
+    "download": "https://mega.nz/file/GHI789DEF",
     "alternativeLinks": [
       {
         "name": "Google Drive",
@@ -281,8 +281,8 @@
   {
     "id": "game-008",
     "title": "Persona 5 Royal",
-    "image": "images/game8.jpg",
-    "thumbnail": "images/game8-thumb.jpg",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Persona+5+Royal",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=Persona+5",
     "description": "JRPG phong cách độc đáo kết hợp giữa cuộc sống học đường và khám phá cung điện tâm linh. Tham gia Phantom Thieves đánh cắp trái tim những kẻ tội ác. Với nghệ thuật UI đẳng cấp và nhạc nền xuất sắc.",
     "genre": ["JRPG", "Phiêu lưu", "Mô phỏng"],
     "rating": 4.9,
@@ -307,7 +307,7 @@
       "images/game8-screen1.jpg",
       "images/game8-screen2.jpg"
     ],
-    "download": "https://example.com/persona5royal",
+    "download": "https://drive.google.com/file/d/1MNO345/view?usp=sharing",
     "alternativeLinks": [
       {
         "name": "Google Drive",
@@ -318,8 +318,8 @@
   {
     "id": "game-009",
     "title": "Red Dead Redemption 2",
-    "image": "images/game9.jpg",
-    "thumbnail": "images/game9-thumb.jpg",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Red+Dead+2",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=RDR2",
     "description": "Game thế giới mở miền Tây hoang dã với độ chi tiết vượt trội. Theo chân Arthur Morgan và băng đảng Van der Linde trong thời kỳ suy tàn của cao bồi. Cốt truyện cảm động với gameplay phong phú không giới hạn.",
     "genre": ["Hành động", "Phiêu lưu", "Thế giới mở"],
     "rating": 4.9,
@@ -345,7 +345,7 @@
       "images/game9-screen2.jpg",
       "images/game9-screen3.jpg"
     ],
-    "download": "https://example.com/rdr2",
+    "download": "https://1fichier.com/?abc123xyz789",
     "alternativeLinks": [
       {
         "name": "Torrent",
@@ -356,8 +356,8 @@
   {
     "id": "game-010",
     "title": "Baldur's Gate 3",
-    "image": "images/game10.jpg",
-    "thumbnail": "images/game10-thumb.jpg",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Baldurs+Gate+3",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=BG3",
     "description": "CRPG thế hệ mới dựa trên D&D 5e với tự do lựa chọn tuyệt đối. Tạo nhân vật theo ý thích và khám phá Forgotten Realms. Mỗi quyết định đều ảnh hưởng sâu sắc đến cốt truyện và thế giới xung quanh.",
     "genre": ["CRPG", "RPG", "Chiến thuật"],
     "rating": 4.9,
@@ -382,7 +382,7 @@
       "images/game10-screen1.jpg",
       "images/game10-screen2.jpg"
     ],
-    "download": "https://example.com/baldursgate3",
+    "download": "https://mega.nz/file/PQR678STU",
     "alternativeLinks": [
       {
         "name": "Google Drive",
@@ -391,6 +391,189 @@
       {
         "name": "Mega.nz",
         "url": "https://mega.nz/baldursgate3"
+      }
+    ]
+  },
+  {
+    "id": "game-011",
+    "title": "God of War (2018)",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=God+of+War",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=GoW",
+    "description": "Hành trình cảm động của Kratos và con trai Atreus qua thế giới thần thoại Bắc Âu. Gameplay combat mới mẻ kết hợp yếu tố RPG sâu sắc. Đồ họa tuyệt đẹp với cốt truyện cha con đầy cảm xúc.",
+    "genre": ["Hành động", "Phiêu lưu", "RPG"],
+    "rating": 4.9,
+    "releaseDate": "2024-03-15",
+    "platform": ["PC", "PlayStation 4", "PlayStation 5"],
+    "size": "45 GB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "Santa Monica Studio",
+    "translationStatus": "Hoàn thành",
+    "featured": true,
+    "downloads": 62400,
+    "tags": ["Action", "Norse Mythology", "Story Rich", "Third Person", "Atmospheric"],
+    "systemRequirements": {
+      "os": "Windows 10/11 64-bit",
+      "processor": "Intel Core i5-8400 / AMD Ryzen 5 2600",
+      "memory": "8 GB RAM",
+      "graphics": "NVIDIA GTX 1060 / AMD RX 570",
+      "storage": "45 GB"
+    },
+    "trailer": "https://youtube.com/watch?v=K0u_kAWLJOA",
+    "screenshots": [
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=GoW+Screenshot+1",
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=GoW+Screenshot+2"
+    ],
+    "download": "https://drive.google.com/file/d/1VWX901/view?usp=sharing",
+    "alternativeLinks": [
+      {
+        "name": "Mega.nz",
+        "url": "https://mega.nz/file/VWX901YZA"
+      }
+    ]
+  },
+  {
+    "id": "game-012",
+    "title": "Hades",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Hades",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=Hades",
+    "description": "Roguelike hành động với nghệ thuật đẹp mắt và cốt truyện hấp dẫn. Điều khiển Zagreus trốn thoát khỏi địa ngục trong vô số lần thử. Mỗi lần chơi đều mang đến trải nghiệm mới với hệ thống nâng cấp đa dạng.",
+    "genre": ["Roguelike", "Hành động", "Indie"],
+    "rating": 4.8,
+    "releaseDate": "2024-01-08",
+    "platform": ["PC", "Nintendo Switch", "PlayStation", "Xbox"],
+    "size": "15 GB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "Supergiant Games",
+    "translationStatus": "Hoàn thành",
+    "featured": false,
+    "downloads": 39800,
+    "tags": ["Roguelike", "Isometric", "Greek Mythology", "Fast-Paced", "Replayable"],
+    "systemRequirements": {
+      "os": "Windows 7/8/10/11",
+      "processor": "Intel Core i3 / AMD equivalent",
+      "memory": "4 GB RAM",
+      "graphics": "NVIDIA GTX 750 Ti / AMD equivalent",
+      "storage": "15 GB"
+    },
+    "trailer": "https://youtube.com/watch?v=91t0ha9x0AE",
+    "screenshots": [
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=Hades+Screenshot+1"
+    ],
+    "download": "https://drive.google.com/file/d/1YZA234/view?usp=sharing",
+    "alternativeLinks": [
+      {
+        "name": "MediaFire",
+        "url": "https://mediafire.com/file/hades123"
+      }
+    ]
+  },
+  {
+    "id": "game-013",
+    "title": "Sekiro: Shadows Die Twice",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Sekiro",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=Sekiro",
+    "description": "Game hành động ninja với hệ thống combat độc đáo dựa trên việc đỡ đòn và phản công. Khám phá Nhật Bản thời Sengoku với những trận boss fight đầy thách thức. Từ FromSoftware với phong cách riêng biệt.",
+    "genre": ["Hành động", "Souls-like", "Ninja"],
+    "rating": 4.7,
+    "releaseDate": "2024-05-22",
+    "platform": ["PC", "PlayStation 4", "Xbox One"],
+    "size": "25 GB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "FromSoftware",
+    "translationStatus": "Hoàn thành",
+    "featured": true,
+    "downloads": 44600,
+    "tags": ["Souls-like", "Ninja", "Challenging", "Feudal Japan", "Boss Battles"],
+    "systemRequirements": {
+      "os": "Windows 7/8/10/11 64-bit",
+      "processor": "Intel Core i3-2100 / AMD FX-6300",
+      "memory": "4 GB RAM",
+      "graphics": "NVIDIA GTX 760 / AMD Radeon HD 7950",
+      "storage": "25 GB"
+    },
+    "trailer": "https://youtube.com/watch?v=rXMX4YJ7Lks",
+    "screenshots": [
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=Sekiro+Screenshot+1",
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=Sekiro+Screenshot+2"
+    ],
+    "download": "https://mega.nz/file/BCD567EFG",
+    "alternativeLinks": [
+      {
+        "name": "Google Drive",
+        "url": "https://drive.google.com/file/d/1BCD567/view?usp=sharing"
+      }
+    ]
+  },
+  {
+    "id": "game-014",
+    "title": "It Takes Two",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=It+Takes+Two",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=It+Takes+Two",
+    "description": "Game co-op độc đáo về hành trình hàn gắn tình cảm vợ chồng. Hai người chơi phải hợp tác để vượt qua những thử thách sáng tạo. Gameplay đa dạng với từng level mang một cơ chế hoàn toàn khác biệt.",
+    "genre": ["Co-op", "Phiêu lưu", "Platformer"],
+    "rating": 4.8,
+    "releaseDate": "2024-02-14",
+    "platform": ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    "size": "50 GB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "Hazelight Studios",
+    "translationStatus": "Hoàn thành",
+    "featured": true,
+    "downloads": 33500,
+    "tags": ["Co-op", "Local Co-Op", "Adventure", "Family Friendly", "Creative"],
+    "systemRequirements": {
+      "os": "Windows 8.1/10/11 64-bit",
+      "processor": "Intel Core i3-2100T / AMD FX 6100",
+      "memory": "8 GB RAM",
+      "graphics": "NVIDIA GTX 660 / AMD R9 270X",
+      "storage": "50 GB"
+    },
+    "trailer": "https://youtube.com/watch?v=ohClxMmNLQQ",
+    "screenshots": [
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=It+Takes+Two+Screenshot+1"
+    ],
+    "download": "https://drive.google.com/file/d/1EFG890/view?usp=sharing",
+    "alternativeLinks": [
+      {
+        "name": "Mega.nz",
+        "url": "https://mega.nz/file/EFG890HIJ"
+      }
+    ]
+  },
+  {
+    "id": "game-015",
+    "title": "Disco Elysium",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Disco+Elysium",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=Disco+Elysium",
+    "description": "RPG trinh thám độc đáo với hệ thống kỹ năng tâm lý phức tạp. Điều tra vụ án bí ẩn trong thành phố Revachol đầy rẫy chính trị và triết học. Không có combat truyền thống, tập trung hoàn toàn vào đối thoại và tư duy.",
+    "genre": ["RPG", "Trinh thám", "Indie"],
+    "rating": 4.9,
+    "releaseDate": "2024-06-30",
+    "platform": ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    "size": "22 GB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "ZA/UM",
+    "translationStatus": "Hoàn thành",
+    "featured": false,
+    "downloads": 28700,
+    "tags": ["RPG", "Detective", "Story Rich", "Choices Matter", "Psychological"],
+    "systemRequirements": {
+      "os": "Windows 7/8/10/11",
+      "processor": "Intel Core i5 / AMD equivalent",
+      "memory": "4 GB RAM",
+      "graphics": "NVIDIA GTX 1050 / AMD equivalent",
+      "storage": "22 GB"
+    },
+    "trailer": "https://youtube.com/watch?v=URMM2bf8ORE",
+    "screenshots": [
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=Disco+Elysium+Screenshot+1",
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=Disco+Elysium+Screenshot+2"
+    ],
+    "download": "https://mega.nz/file/HIJ123KLM",
+    "alternativeLinks": [
+      {
+        "name": "Google Drive",
+        "url": "https://drive.google.com/file/d/1HIJ123/view?usp=sharing"
       }
     ]
   }
