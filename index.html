@@ -8,16 +8,29 @@
     <meta name="description" content="Thư viện game Việt hóa chất lượng cao từ GAMEDUCVONG">
 </head>
 <body>
-    <!-- Background animated gradient -->
+    <!-- Advanced Background Effects -->
     <div class="bg-gradient"></div>
+    <div class="bg-mesh"></div>
+    <div class="bg-stars"></div>
     
-    <!-- Floating particles effect -->
+    <!-- Enhanced Floating particles effect -->
     <div class="particles">
         <span class="particle"></span>
         <span class="particle"></span>
         <span class="particle"></span>
         <span class="particle"></span>
         <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+    </div>
+    
+    <!-- Floating geometric shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
     </div>
 
     <!-- Hero Header -->
@@ -34,12 +47,14 @@
                         <p class="subtitle">Game Việt Hóa Chất Lượng Cao</p>
                         <div class="social-links">
                             <a href="https://www.facebook.com/share/1GCT3nGne5/" target="_blank" rel="noopener" class="social-btn official">
-                                <span class="btn-icon">F</span>
+                                <span class="btn-icon">📘</span>
                                 <span class="btn-text">Admin Chính Chủ</span>
+                                <div class="btn-glow"></div>
                             </a>
                             <a href="https://www.facebook.com/groups/1989187598586537/" target="_blank" rel="noopener" class="social-btn group">
-                                <span class="btn-icon">G</span>
+                                <span class="btn-icon">👥</span>
                                 <span class="btn-text">Nhóm Facebook</span>
+                                <div class="btn-glow"></div>
                             </a>
                         </div>
                     </div>
@@ -68,15 +83,18 @@
     <!-- Search & Filter Section -->
     <section class="filter-section">
         <div class="container">
+            <!-- Search & Filter Section with Advanced UI -->
             <div class="search-bar">
                 <div class="search-input-wrapper">
+                    <div class="search-icon">🔍</div>
                     <input 
                         type="text" 
                         id="search-input" 
                         placeholder="Tìm kiếm game theo tên, thể loại..."
                         autocomplete="off"
                     >
-                    <button class="clear-search" id="clear-search" style="display: none;">×</button>
+                    <button class="clear-search" id="clear-search" style="display: none;">✕</button>
+                    <div class="search-suggestions" id="search-suggestions"></div>
                 </div>
             </div>
             
@@ -94,10 +112,13 @@
                 
                 <div class="view-toggle">
                     <button class="view-btn active" data-view="grid" title="Xem dạng lưới">
-                        <span class="view-icon"></span>
+                        <span class="view-icon">⊞</span>
                     </button>
                     <button class="view-btn" data-view="list" title="Xem dạng danh sách">
-                        <span class="view-icon"></span>
+                        <span class="view-icon">☰</span>
+                    </button>
+                    <button class="view-btn" data-view="compact" title="Xem dạng compact">
+                        <span class="view-icon">▦</span>
                     </button>
                 </div>
             </div>
@@ -170,10 +191,27 @@
         </div>
     </footer>
 
-    <!-- Scroll to top button -->
+    <!-- Scroll to top button with enhanced design -->
     <button id="scroll-top" class="scroll-top" title="Lên đầu trang">
-        <span class="scroll-arrow"></span>
+        <span class="scroll-arrow">⬆</span>
+        <div class="scroll-progress"></div>
     </button>
+
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" title="Chuyển đổi theme">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-logo">GDV</div>
+            <div class="loading-text">Đang tải game...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

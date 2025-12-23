@@ -2,6 +2,8 @@
 let allGames = [];
 let filteredGames = [];
 let currentView = 'grid';
+let currentTheme = 'dark';
+let isLoading = false;
 
 // ===== DOM Elements =====
 const gameList = document.getElementById('game-list');
@@ -12,22 +14,36 @@ const clearSearch = document.getElementById('clear-search');
 const sortSelect = document.getElementById('sort-select');
 const viewButtons = document.querySelectorAll('.view-btn');
 const scrollTopBtn = document.getElementById('scroll-top');
+const themeToggle = document.getElementById('theme-toggle');
 const loadingState = document.getElementById('loading-state');
 const emptyState = document.getElementById('empty-state');
+const loadingOverlay = document.getElementById('loading-overlay');
 
 // ===== Initialize App =====
 document.addEventListener('DOMContentLoaded', () => {
+    showLoadingOverlay();
     initializeApp();
     setupEventListeners();
     setupScrollButton();
+    setupThemeToggle();
     addEnhancedAnimations();
+    initializeParallaxEffects();
+    
+    // Hide loading overlay after initialization
+    setTimeout(() => {
+        hideLoadingOverlay();
+    }, 2000);
 });
 
 // ===== Fetch and Load Games =====
 async function initializeApp() {
     try {
         showLoading();
-        const response = await fetch('games.json');
+        
+        // Simulate loading delay for better UX
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        const response = await fetch('game.json');
         
         if (!response.ok) {
             throw new Error('Failed to load games data');
@@ -40,6 +56,12 @@ async function initializeApp() {
         updateStats();
         renderGames(filteredGames);
         animateCards();
+        
+        // Add stagger animation to initial load
+        setTimeout(() => {
+            addStaggerAnimation();
+        }, 500);
+        
     } catch (error) {
         console.error('Error loading games:', error);
         hideLoading();
@@ -329,7 +351,7 @@ function applySorting() {
     }
 }
 
-// ===== View Toggle =====
+// ===== Enhanced View Toggle =====
 function toggleView(view) {
     currentView = view;
     
@@ -340,14 +362,19 @@ function toggleView(view) {
         }
     });
     
+    gameList.classList.remove('list-view', 'compact-view');
+    
     if (view === 'list') {
         gameList.classList.add('list-view');
-    } else {
-        gameList.classList.remove('list-view');
+    } else if (view === 'compact') {
+        gameList.classList.add('compact-view');
     }
     
-    // Re-animate cards on view change
-    animateCards();
+    // Re-animate cards on view change with stagger
+    setTimeout(() => {
+        animateCards();
+        addStaggerAnimation();
+    }, 100);
 }
 
 // ===== Animate Cards on Load =====
