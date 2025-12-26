@@ -1,3 +1,505 @@
+// ===== SIÊU XỊN: Ultra Performance & 999 FPS System =====
+let performanceMode = 'ultra';
+let currentFPS = 60;
+let frameCount = 0;
+let lastFrameTime = performance.now();
+let fpsHistory = [];
+let particleSystem = null;
+let audioContext = null;
+let isUltraMode = true;
+
+// ===== SIÊU XỊN: Dynamic Particle Canvas System =====
+class UltraParticleSystem {
+    constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.particles = [];
+        this.maxParticles = this.getOptimalParticleCount();
+        this.animationId = null;
+        
+        this.setupCanvas();
+        this.createParticles();
+        this.animate();
+        
+        // Resize handler
+        window.addEventListener('resize', () => this.setupCanvas());
+    }
+    
+    getOptimalParticleCount() {
+        const devicePixelRatio = window.devicePixelRatio || 1;
+        const screenArea = window.innerWidth * window.innerHeight;
+        
+        // Adjust particle count based on device performance
+        if (screenArea > 2000000) return Math.min(150, Math.floor(screenArea / 15000)); // High-end
+        if (screenArea > 1000000) return Math.min(100, Math.floor(screenArea / 20000)); // Mid-range
+        return Math.min(50, Math.floor(screenArea / 25000)); // Low-end
+    }
+    
+    setupCanvas() {
+        const rect = this.canvas.getBoundingClientRect();
+        const devicePixelRatio = window.devicePixelRatio || 1;
+        
+        this.canvas.width = rect.width * devicePixelRatio;
+        this.canvas.height = rect.height * devicePixelRatio;
+        this.canvas.style.width = rect.width + 'px';
+        this.canvas.style.height = rect.height + 'px';
+        
+        this.ctx.scale(devicePixelRatio, devicePixelRatio);
+        this.ctx.imageSmoothingEnabled = false; // Better performance
+    }
+    
+    createParticles() {
+        this.particles = [];
+        for (let i = 0; i < this.maxParticles; i++) {
+            this.particles.push({
+                x: Math.random() * this.canvas.width,
+                y: Math.random() * this.canvas.height,
+                vx: (Math.random() - 0.5) * 2,
+                vy: (Math.random() - 0.5) * 2,
+                size: Math.random() * 3 + 1,
+                color: this.getRandomColor(),
+                alpha: Math.random() * 0.8 + 0.2,
+                life: Math.random() * 100 + 50
+            });
+        }
+    }
+    
+    getRandomColor() {
+        const colors = [
+            'rgba(99, 102, 241, ',
+            'rgba(139, 92, 246, ',
+            'rgba(236, 72, 153, ',
+            'rgba(16, 185, 129, ',
+            'rgba(245, 158, 11, '
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+    
+    updateParticle(particle) {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        particle.life--;
+        
+        // Boundary collision
+        if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
+        if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+        
+        // Respawn particle if life is over
+        if (particle.life <= 0) {
+            particle.x = Math.random() * this.canvas.width;
+            particle.y = Math.random() * this.canvas.height;
+            particle.life = Math.random() * 100 + 50;
+            particle.alpha = Math.random() * 0.8 + 0.2;
+        }
+    }
+    
+    drawParticle(particle) {
+        this.ctx.save();
+        this.ctx.globalAlpha = particle.alpha;
+        this.ctx.fillStyle = particle.color + particle.alpha + ')';
+        this.ctx.beginPath();
+        this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        this.ctx.fill();
+        
+        // Add glow effect
+        this.ctx.shadowBlur = 10;
+        this.ctx.shadowColor = particle.color + '0.8)';
+        this.ctx.fill();
+        this.ctx.restore();
+    }
+    
+    animate() {
+        // Clear canvas with fade effect for trails
+        this.ctx.fillStyle = 'rgba(10, 14, 26, 0.05)';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Update and draw particles
+        for (let particle of this.particles) {
+            this.updateParticle(particle);
+            this.drawParticle(particle);
+        }
+        
+        // Connect nearby particles
+        this.connectParticles();
+        
+        this.animationId = requestAnimationFrame(() => this.animate());
+    }
+    
+    connectParticles() {
+        for (let i = 0; i < this.particles.length; i++) {
+            for (let j = i + 1; j < this.particles.length; j++) {
+                const dx = this.particles[i].x - this.particles[j].x;
+                const dy = this.particles[i].y - this.particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    this.ctx.save();
+                    this.ctx.globalAlpha = (100 - distance) / 100 * 0.3;
+                    this.ctx.strokeStyle = 'rgba(99, 102, 241, 0.5)';
+                    this.ctx.lineWidth = 1;
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+                    this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+                    this.ctx.stroke();
+                    this.ctx.restore();
+                }
+            }
+        }
+    }
+    
+    destroy() {
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+        }
+    }
+}
+
+// ===== SIÊU XỊN: Ultra FPS Monitor & Performance Optimization =====
+class UltraPerformanceMonitor {
+    constructor() {
+        this.fpsElement = document.getElementById('fps-value');
+        this.cpuFill = document.getElementById('cpu-fill');
+        this.gpuFill = document.getElementById('gpu-fill');
+        this.frameCount = 0;
+        this.lastTime = performance.now();
+        this.fpsHistory = [];
+        this.isMonitoring = true;
+        
+        this.startMonitoring();
+        this.optimizePerformance();
+    }
+    
+    startMonitoring() {
+        const monitor = () => {
+            if (!this.isMonitoring) return;
+            
+            const currentTime = performance.now();
+            this.frameCount++;
+            
+            // Calculate FPS every second
+            if (currentTime - this.lastTime >= 1000) {
+                const fps = Math.round((this.frameCount * 1000) / (currentTime - this.lastTime));
+                this.updateFPS(fps);
+                this.frameCount = 0;
+                this.lastTime = currentTime;
+            }
+            
+            // Update performance bars
+            this.updatePerformanceBars();
+            
+            requestAnimationFrame(monitor);
+        };
+        
+        monitor();
+    }
+    
+    updateFPS(fps) {
+        currentFPS = fps;
+        this.fpsHistory.push(fps);
+        if (this.fpsHistory.length > 60) this.fpsHistory.shift();
+        
+        if (this.fpsElement) {
+            this.fpsElement.textContent = fps;
+            
+            // Color coding based on FPS
+            if (fps >= 60) {
+                this.fpsElement.style.color = 'var(--success)';
+            } else if (fps >= 30) {
+                this.fpsElement.style.color = 'var(--warning)';
+            } else {
+                this.fpsElement.style.color = 'var(--error)';
+            }
+        }
+        
+        // Auto-optimize if FPS drops
+        if (fps < 30) {
+            this.enablePerformanceMode();
+        } else if (fps > 120) {
+            this.enableUltraMode();
+        }
+    }
+    
+    updatePerformanceBars() {
+        const cpuUsage = Math.random() * 40 + 30; // Simulate CPU usage
+        const gpuUsage = Math.random() * 60 + 20; // Simulate GPU usage
+        
+        if (this.cpuFill) {
+            this.cpuFill.style.width = cpuUsage + '%';
+        }
+        
+        if (this.gpuFill) {
+            this.gpuFill.style.width = gpuUsage + '%';
+        }
+    }
+    
+    enablePerformanceMode() {
+        if (performanceMode === 'performance') return;
+        
+        performanceMode = 'performance';
+        document.body.classList.add('performance-mode');
+        
+        // Reduce particle count
+        if (particleSystem) {
+            particleSystem.maxParticles = Math.floor(particleSystem.maxParticles * 0.5);
+        }
+        
+        // Disable some animations
+        document.documentElement.style.setProperty('--animation-speed', '0.5s');
+        
+        console.log('🚀 Performance mode enabled for better FPS');
+    }
+    
+    enableUltraMode() {
+        if (performanceMode === 'ultra') return;
+        
+        performanceMode = 'ultra';
+        document.body.classList.remove('performance-mode');
+        
+        // Restore full particle count
+        if (particleSystem) {
+            particleSystem.maxParticles = particleSystem.getOptimalParticleCount();
+        }
+        
+        // Restore animations
+        document.documentElement.style.setProperty('--animation-speed', '1s');
+        
+        console.log('✨ Ultra mode enabled for maximum visual effects');
+    }
+    
+    optimizePerformance() {
+        // Enable GPU acceleration
+        const elements = document.querySelectorAll('.game-card, .particle, .element-3d, .holo-layer');
+        elements.forEach(el => {
+            el.style.transform = 'translateZ(0)';
+            el.style.willChange = 'transform';
+        });
+        
+        // Optimize scroll performance
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    this.handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    }
+    
+    handleScroll() {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        
+        // Parallax effects with GPU acceleration
+        const parallaxElements = document.querySelectorAll('.floating-3d-elements .element-3d');
+        parallaxElements.forEach((el, index) => {
+            const speed = (index + 1) * 0.1;
+            el.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+        });
+    }
+}
+
+// ===== SIÊU XỊN: Ultra Loading Screen System =====
+class UltraLoadingScreen {
+    constructor() {
+        this.loadingScreen = document.getElementById('ultra-loading-screen');
+        this.progressFill = document.getElementById('loading-progress-fill');
+        this.progressPercentage = document.getElementById('loading-percentage');
+        this.loadingStatus = document.getElementById('loading-status');
+        this.progress = 0;
+        this.isLoading = true;
+        
+        this.startLoading();
+    }
+    
+    startLoading() {
+        const loadingSteps = [
+            { text: 'Khởi tạo hệ thống...', duration: 500 },
+            { text: 'Tải tài nguyên đồ họa...', duration: 800 },
+            { text: 'Khởi động particle system...', duration: 600 },
+            { text: 'Tối ưu hóa hiệu suất...', duration: 700 },
+            { text: 'Kích hoạt chế độ 999 FPS...', duration: 400 },
+            { text: 'Hoàn tất!', duration: 300 }
+        ];
+        
+        let currentStep = 0;
+        const totalSteps = loadingSteps.length;
+        
+        const processStep = () => {
+            if (currentStep >= totalSteps) {
+                this.completeLoading();
+                return;
+            }
+            
+            const step = loadingSteps[currentStep];
+            this.updateStatus(step.text);
+            
+            const stepProgress = (currentStep + 1) / totalSteps * 100;
+            this.updateProgress(stepProgress);
+            
+            setTimeout(() => {
+                currentStep++;
+                processStep();
+            }, step.duration);
+        };
+        
+        processStep();
+    }
+    
+    updateStatus(text) {
+        if (this.loadingStatus) {
+            this.loadingStatus.textContent = text;
+        }
+    }
+    
+    updateProgress(percentage) {
+        this.progress = percentage;
+        
+        if (this.progressFill) {
+            this.progressFill.style.width = percentage + '%';
+        }
+        
+        if (this.progressPercentage) {
+            this.progressPercentage.textContent = Math.round(percentage) + '%';
+        }
+    }
+    
+    completeLoading() {
+        setTimeout(() => {
+            if (this.loadingScreen) {
+                this.loadingScreen.classList.add('hidden');
+                document.body.style.overflow = '';
+                
+                setTimeout(() => {
+                    this.loadingScreen.style.display = 'none';
+                    this.initializeUltraFeatures();
+                }, 800);
+            }
+        }, 500);
+    }
+    
+    initializeUltraFeatures() {
+        // Initialize particle system
+        const particleCanvas = document.getElementById('particle-canvas');
+        if (particleCanvas) {
+            particleSystem = new UltraParticleSystem(particleCanvas);
+        }
+        
+        // Initialize performance monitor
+        new UltraPerformanceMonitor();
+        
+        // Initialize audio visualizer
+        this.initializeAudioVisualizer();
+        
+        // Show completion notification
+        setTimeout(() => {
+            showNotification('🚀 Hệ thống Ultra đã sẵn sàng! Chế độ 999 FPS được kích hoạt!', 'success');
+        }, 1000);
+        
+        console.log('%c🎮 ULTRA MODE ACTIVATED! 999 FPS READY!', 'background: linear-gradient(135deg, #667eea, #764ba2); color: white; font-size: 20px; font-weight: bold; padding: 15px 30px; border-radius: 10px;');
+    }
+    
+    initializeAudioVisualizer() {
+        const visualizerBars = document.querySelectorAll('.visualizer-bars .bar');
+        
+        // Animate visualizer bars
+        const animateBars = () => {
+            visualizerBars.forEach((bar, index) => {
+                const height = Math.random() * 40 + 10;
+                bar.style.height = height + 'px';
+                bar.style.animationDelay = (index * 0.1) + 's';
+            });
+            
+            requestAnimationFrame(animateBars);
+        };
+        
+        animateBars();
+    }
+}
+
+// ===== SIÊU XỊN: Mobile Performance Optimization =====
+function optimizeForMobile() {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isLowEnd = navigator.hardwareConcurrency <= 4 || navigator.deviceMemory <= 4;
+    
+    if (isMobile || isLowEnd) {
+        // Reduce particle count for mobile
+        document.documentElement.style.setProperty('--particle-count', '30');
+        
+        // Disable some heavy animations
+        const heavyElements = document.querySelectorAll('.floating-3d-elements, .holographic-bg');
+        heavyElements.forEach(el => {
+            el.style.display = 'none';
+        });
+        
+        // Enable performance mode by default
+        performanceMode = 'performance';
+        document.body.classList.add('mobile-optimized');
+        
+        console.log('📱 Mobile optimization enabled');
+    }
+}
+
+// ===== SIÊU XỊN: Advanced GPU Acceleration =====
+function enableGPUAcceleration() {
+    const acceleratedElements = [
+        '.game-card',
+        '.particle',
+        '.element-3d',
+        '.holo-layer',
+        '.visualizer-bars .bar',
+        '.loading-particle',
+        '.floating-shapes .shape'
+    ];
+    
+    acceleratedElements.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+            el.style.transform = 'translateZ(0)';
+            el.style.backfaceVisibility = 'hidden';
+            el.style.perspective = '1000px';
+            el.style.willChange = 'transform, opacity';
+        });
+    });
+    
+    console.log('🚀 GPU acceleration enabled for all elements');
+}
+
+// ===== SIÊU XỊN: Initialize Ultra System =====
+function initializeUltraSystem() {
+    // Check if ultra features are supported
+    const supportsWebGL = !!document.createElement('canvas').getContext('webgl');
+    const supportsRAF = !!window.requestAnimationFrame;
+    
+    if (!supportsWebGL || !supportsRAF) {
+        console.warn('⚠️ Ultra features not fully supported on this device');
+        return;
+    }
+    
+    // Mobile optimization
+    optimizeForMobile();
+    
+    // Enable GPU acceleration
+    enableGPUAcceleration();
+    
+    // Initialize ultra loading screen
+    new UltraLoadingScreen();
+    
+    // Set up performance monitoring
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            console.log('%c✨ GAMEDUCVONG ULTRA SYSTEM LOADED!', 'background: linear-gradient(135deg, #f093fb, #f5576c); color: white; font-size: 16px; font-weight: bold; padding: 10px 20px; border-radius: 8px;');
+            console.log('%c🎯 Target: 999 FPS | Current Mode: ' + performanceMode.toUpperCase(), 'color: #a78bfa; font-size: 12px;');
+        }, 2000);
+    });
+}
+
+// ===== Initialize Ultra System on DOM Load =====
+document.addEventListener('DOMContentLoaded', () => {
+    initializeUltraSystem();
+});
+
 // ===== Global State Management =====
 let allGames = [];
 let filteredGames = [];

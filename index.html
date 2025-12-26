@@ -26,6 +26,35 @@
     <div class="bg-mesh"></div>
     <div class="bg-stars"></div>
     
+    <!-- SIÊU XỊN: Holographic Background -->
+    <div class="holographic-bg" id="holographic-bg">
+        <div class="holo-layer holo-1"></div>
+        <div class="holo-layer holo-2"></div>
+        <div class="holo-layer holo-3"></div>
+    </div>
+    
+    <!-- SIÊU XỊN: 3D Floating Elements -->
+    <div class="floating-3d-elements">
+        <div class="element-3d cube-1">🎮</div>
+        <div class="element-3d cube-2">🎯</div>
+        <div class="element-3d cube-3">⚡</div>
+        <div class="element-3d cube-4">💎</div>
+        <div class="element-3d cube-5">🚀</div>
+        <div class="element-3d cube-6">🌟</div>
+    </div>
+    
+    <!-- SIÊU XỊN: Dynamic Particle System -->
+    <canvas id="particle-canvas" class="particle-canvas"></canvas>
+    
+    <!-- SIÊU XỊN: Audio Visualizer -->
+    <div class="audio-visualizer" id="audio-visualizer">
+        <div class="visualizer-bars">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+    </div>
+    
     <!-- Enhanced Floating particles effect -->
     <div class="particles">
         <span class="particle"></span>
@@ -60,6 +89,52 @@
         <div class="code-snippet">const gaming = true;</div>
         <div class="code-snippet">while(playing) { enjoy(); }</div>
         <div class="code-snippet">import { fun } from 'gaming';</div>
+    </div>
+    
+    <!-- SIÊU XỊN: Performance Monitor -->
+    <div class="performance-monitor" id="performance-monitor">
+        <div class="fps-counter">
+            <span class="fps-label">FPS:</span>
+            <span class="fps-value" id="fps-value">60</span>
+        </div>
+        <div class="performance-bars">
+            <div class="perf-bar cpu-bar">
+                <span class="bar-label">CPU</span>
+                <div class="bar-fill" id="cpu-fill"></div>
+            </div>
+            <div class="perf-bar gpu-bar">
+                <span class="bar-label">GPU</span>
+                <div class="bar-fill" id="gpu-fill"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SIÊU XỊN: Loading Screen with Progress -->
+    <div class="ultra-loading-screen" id="ultra-loading-screen">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <div class="logo-3d-ultra">GDV</div>
+                <div class="logo-hologram"></div>
+            </div>
+            <div class="loading-text">
+                <h2>GAMEDUCVONG</h2>
+                <p id="loading-status">Khởi tạo hệ thống...</p>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar-ultra">
+                    <div class="progress-fill" id="loading-progress-fill"></div>
+                    <div class="progress-glow"></div>
+                </div>
+                <div class="progress-percentage" id="loading-percentage">0%</div>
+            </div>
+            <div class="loading-effects">
+                <div class="loading-particle"></div>
+                <div class="loading-particle"></div>
+                <div class="loading-particle"></div>
+                <div class="loading-particle"></div>
+                <div class="loading-particle"></div>
+            </div>
+        </div>
     </div>
     
     <!-- Floating geometric shapes -->
