@@ -5,6 +5,7 @@ let currentView = 'grid';
 let currentTheme = 'dark';
 let isLoading = false;
 let animationFrameId = null;
+let registeredUsers = JSON.parse(localStorage.getItem('gameducvong_users') || '{}');
 
 // ===== DOM Elements =====
 const gameList = document.getElementById('game-list');
@@ -23,6 +24,9 @@ const navProgressBar = document.getElementById('nav-progress-bar');
 
 // ===== Initialize App =====
 document.addEventListener('DOMContentLoaded', () => {
+    // Show age warning first
+    showAgeWarning();
+    
     initializeApp();
     setupEventListeners();
     setupScrollButton();
@@ -33,12 +37,298 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeMatrixRain();
     initializeParticleSystem();
     setupIntersectionObserver();
+    setupAgeWarning();
+    setupNavigationSidebar();
+    setupSearchModal();
     
     // Add loading screen
     setTimeout(() => {
         document.body.classList.add('loaded');
     }, 2000);
 });
+
+// ===== Age Warning System =====
+function setupAgeWarning() {
+    const ageWarningOverlay = document.getElementById('age-warning-overlay');
+    const ageConfirm = document.getElementById('age-confirm');
+    const ageAccept = document.getElementById('age-accept');
+    const ageDecline = document.getElementById('age-decline');
+
+    // Check if user already confirmed age
+    const ageConfirmed = localStorage.getItem('gameducvong_age_confirmed');
+    if (ageConfirmed === 'true') {
+        ageWarningOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+        return;
+    }
+
+    // Enable/disable accept button based on checkbox
+    ageConfirm?.addEventListener('change', (e) => {
+        ageAccept.disabled = !e.target.checked;
+        if (e.target.checked) {
+            ageAccept.classList.add('enabled');
+        } else {
+            ageAccept.classList.remove('enabled');
+        }
+    });
+
+    // Handle accept
+    ageAccept?.addEventListener('click', () => {
+        if (ageConfirm.checked) {
+            localStorage.setItem('gameducvong_age_confirmed', 'true');
+            ageWarningOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+            showNotification('🎮 Chào mừng bạn đến với GAMEDUCVONG!', 'success');
+        }
+    });
+
+    // Handle decline
+    ageDecline?.addEventListener('click', () => {
+        showNotification('👋 Cảm ơn bạn đã ghé thăm. Hẹn gặp lại khi bạn đủ tuổi!', 'info');
+        setTimeout(() => {
+            window.location.href = 'https://www.google.com';
+        }, 2000);
+    });
+}
+
+function showAgeWarning() {
+    const ageConfirmed = localStorage.getItem('gameducvong_age_confirmed');
+    if (ageConfirmed !== 'true') {
+        document.body.style.overflow = 'hidden';
+        document.getElementById('age-warning-overlay').style.display = 'flex';
+    }
+}
+
+// ===== Navigation Sidebar =====
+function setupNavigationSidebar() {
+    const navMenuBtn = document.getElementById('nav-menu-btn');
+    const sidebarOverlay = document.getElementById('nav-sidebar-overlay');
+    const sidebar = document.getElementById('nav-sidebar');
+    const sidebarClose = document.getElementById('sidebar-close');
+
+    navMenuBtn?.addEventListener('click', () => {
+        sidebarOverlay.style.display = 'block';
+        setTimeout(() => {
+            sidebar.classList.add('open');
+        }, 10);
+        document.body.style.overflow = 'hidden';
+    });
+
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+        setTimeout(() => {
+            sidebarOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }, 400);
+    }
+
+    sidebarClose?.addEventListener('click', closeSidebar);
+    sidebarOverlay?.addEventListener('click', (e) => {
+        if (e.target === sidebarOverlay) {
+            closeSidebar();
+        }
+    });
+}
+
+// ===== Enhanced Search Modal =====
+function setupSearchModal() {
+    const navSearchBtn = document.getElementById('nav-search-btn');
+    const searchModalOverlay = document.getElementById('search-modal-overlay');
+    const searchModalClose = document.getElementById('search-modal-close');
+    const modalSearchInput = document.getElementById('modal-search-input');
+    const modalVoiceSearch = document.getElementById('modal-voice-search');
+    const searchSuggestionBtns = document.querySelectorAll('.search-suggestion-btn');
+
+    navSearchBtn?.addEventListener('click', () => {
+        searchModalOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+            modalSearchInput.focus();
+        }, 300);
+    });
+
+    function closeSearchModal() {
+        searchModalOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    searchModalClose?.addEventListener('click', closeSearchModal);
+    searchModalOverlay?.addEventListener('click', (e) => {
+        if (e.target === searchModalOverlay) {
+            closeSearchModal();
+        }
+    });
+
+    // Handle search input
+    modalSearchInput?.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        if (query.length > 0) {
+            performModalSearch(query);
+        } else {
+            clearModalSearchResults();
+        }
+    });
+
+    // Handle search suggestions
+    searchSuggestionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const searchTerm = btn.dataset.search;
+            modalSearchInput.value = searchTerm;
+            performModalSearch(searchTerm.toLowerCase());
+        });
+    });
+
+    // Voice search
+    modalVoiceSearch?.addEventListener('click', () => {
+        startVoiceSearch(modalSearchInput);
+    });
+
+    // Enter key to search and close modal
+    modalSearchInput?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const query = e.target.value.trim();
+            if (query) {
+                // Apply search to main search input
+                searchInput.value = query;
+                handleSearch();
+                closeSearchModal();
+                showNotification(`🔍 Tìm kiếm: "${query}"`, 'info');
+            }
+        }
+    });
+}
+
+function performModalSearch(query) {
+    const results = allGames.filter(game => {
+        const searchableText = [
+            game.title,
+            game.description,
+            ...(game.genre || []),
+            ...(game.tags || []),
+            game.developer
+        ].join(' ').toLowerCase();
+        
+        return searchableText.includes(query);
+    });
+
+    displayModalSearchResults(results, query);
+}
+
+function displayModalSearchResults(results, query) {
+    const resultsContainer = document.getElementById('modal-search-results');
+    
+    if (results.length === 0) {
+        resultsContainer.innerHTML = `
+            <div style="text-align: center; padding: 40px 20px; color: var(--text-muted);">
+                <div style="font-size: 3rem; margin-bottom: 15px;">😔</div>
+                <h4>Không tìm thấy game nào</h4>
+                <p>Thử tìm kiếm với từ khóa khác</p>
+            </div>
+        `;
+        return;
+    }
+
+    const resultsHTML = `
+        <h4 style="color: var(--text-primary); margin-bottom: 20px;">
+            🎮 Tìm thấy ${results.length} game cho "${query}"
+        </h4>
+        <div style="display: flex; flex-direction: column; gap: 15px; max-height: 300px; overflow-y: auto;">
+            ${results.slice(0, 5).map(game => `
+                <div class="search-result-item" style="display: flex; gap: 15px; padding: 15px; 
+                     background: rgba(99, 102, 241, 0.05); border: 1px solid rgba(99, 102, 241, 0.2); 
+                     border-radius: 12px; cursor: pointer; transition: all 0.3s ease;"
+                     onclick="selectSearchResult('${game.title}')">
+                    <img src="${game.image}" alt="${game.title}" 
+                         style="width: 60px; height: 40px; object-fit: cover; border-radius: 8px;"
+                         onerror="this.src='https://via.placeholder.com/60x40/1a1f35/64748b?text=Game'">
+                    <div style="flex: 1;">
+                        <h5 style="color: var(--text-primary); margin-bottom: 5px; font-size: 1rem;">${game.title}</h5>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
+                            ${game.description.substring(0, 80)}...
+                        </p>
+                        <div style="margin-top: 8px;">
+                            ${(game.genre || []).slice(0, 2).map(g => 
+                                `<span style="background: rgba(99, 102, 241, 0.2); color: var(--primary-light); 
+                                 padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; margin-right: 5px;">${g}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+
+    resultsContainer.innerHTML = resultsHTML;
+
+    // Add hover effects
+    const resultItems = resultsContainer.querySelectorAll('.search-result-item');
+    resultItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.background = 'rgba(99, 102, 241, 0.1)';
+            this.style.transform = 'translateY(-2px)';
+        });
+        item.addEventListener('mouseleave', function() {
+            this.style.background = 'rgba(99, 102, 241, 0.05)';
+            this.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+function selectSearchResult(gameTitle) {
+    searchInput.value = gameTitle;
+    handleSearch();
+    document.getElementById('search-modal-overlay').style.display = 'none';
+    document.body.style.overflow = '';
+    showNotification(`🎮 Đã chọn: "${gameTitle}"`, 'success');
+}
+
+function clearModalSearchResults() {
+    const resultsContainer = document.getElementById('modal-search-results');
+    resultsContainer.innerHTML = '';
+}
+
+// ===== Enhanced Voice Search =====
+function startVoiceSearch(inputElement) {
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        showNotification('❌ Trình duyệt không hỗ trợ nhận diện giọng nói', 'error');
+        return;
+    }
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'vi-VN';
+
+    const voiceBtn = document.getElementById('modal-voice-search');
+    const originalHTML = voiceBtn.innerHTML;
+
+    recognition.start();
+    voiceBtn.innerHTML = '🎤';
+    voiceBtn.style.background = 'linear-gradient(135deg, var(--error), var(--warning))';
+    voiceBtn.style.animation = 'pulse 1s infinite';
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        inputElement.value = transcript;
+        performModalSearch(transcript.toLowerCase());
+        showNotification(`🎤 Đã nhận diện: "${transcript}"`, 'success');
+    };
+
+    recognition.onend = () => {
+        voiceBtn.innerHTML = originalHTML;
+        voiceBtn.style.background = '';
+        voiceBtn.style.animation = '';
+    };
+
+    recognition.onerror = (event) => {
+        showNotification('❌ Không thể nhận diện giọng nói. Vui lòng thử lại!', 'error');
+        voiceBtn.innerHTML = originalHTML;
+        voiceBtn.style.background = '';
+        voiceBtn.style.animation = '';
+    };
+}
 
 // ===== Matrix Rain Effect =====
 function initializeMatrixRain() {
@@ -1613,10 +1903,14 @@ function setupFormSubmission() {
 
 async function handleLogin(e) {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const username = document.getElementById('login-username').value;
+    const username = document.getElementById('login-username').value.trim();
     const password = document.getElementById('login-password').value;
     const rememberMe = document.getElementById('remember-me').checked;
+
+    if (!username || !password) {
+        showNotification('❌ Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!', 'error');
+        return;
+    }
 
     // Show loading state
     const submitBtn = e.target.querySelector('.auth-btn');
@@ -1626,25 +1920,25 @@ async function handleLogin(e) {
 
     try {
         // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise(resolve => setTimeout(resolve, 1500));
         
-        // Mock successful login
-        const userData = {
-            id: 1,
-            username: username,
-            email: `${username}@gameducvong.com`,
-            avatar: `https://via.placeholder.com/40x40/6366f1/ffffff?text=${username.charAt(0).toUpperCase()}`,
-            level: Math.floor(Math.random() * 100) + 1,
-            joinDate: new Date().toISOString(),
-            favorites: [],
-            downloads: []
-        };
-
-        loginSuccess(userData, rememberMe);
-        showNotification('🎉 Đăng nhập thành công! Chào mừng bạn trở lại!', 'success');
+        // Check if user exists in registered users
+        const userKey = username.toLowerCase();
+        if (registeredUsers[userKey] && registeredUsers[userKey].password === password) {
+            // Successful login with existing account
+            const userData = registeredUsers[userKey];
+            loginSuccess(userData, rememberMe);
+            showNotification(`🎉 Chào mừng ${userData.username} trở lại!`, 'success');
+        } else if (registeredUsers[userKey]) {
+            // Wrong password
+            showNotification('❌ Mật khẩu không chính xác!', 'error');
+        } else {
+            // User doesn't exist
+            showNotification('❌ Tài khoản không tồn tại. Vui lòng đăng ký tài khoản mới!', 'error');
+        }
         
     } catch (error) {
-        showNotification('❌ Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin!', 'error');
+        showNotification('❌ Đăng nhập thất bại. Vui lòng thử lại!', 'error');
     } finally {
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
@@ -1653,13 +1947,28 @@ async function handleLogin(e) {
 
 async function handleRegister(e) {
     e.preventDefault();
-    const username = document.getElementById('register-username').value;
-    const email = document.getElementById('register-email').value;
+    const username = document.getElementById('register-username').value.trim();
+    const email = document.getElementById('register-email').value.trim();
     const password = document.getElementById('register-password').value;
     const confirmPassword = document.getElementById('register-confirm-password').value;
     const agreeTerms = document.getElementById('agree-terms').checked;
 
     // Validation
+    if (!username || !email || !password || !confirmPassword) {
+        showNotification('❌ Vui lòng điền đầy đủ thông tin!', 'error');
+        return;
+    }
+
+    if (username.length < 3) {
+        showNotification('❌ Tên đăng nhập phải có ít nhất 3 ký tự!', 'error');
+        return;
+    }
+
+    if (password.length < 6) {
+        showNotification('❌ Mật khẩu phải có ít nhất 6 ký tự!', 'error');
+        return;
+    }
+
     if (password !== confirmPassword) {
         showNotification('❌ Mật khẩu xác nhận không khớp!', 'error');
         return;
@@ -1667,6 +1976,20 @@ async function handleRegister(e) {
 
     if (!agreeTerms) {
         showNotification('❌ Vui lòng đồng ý với điều khoản sử dụng!', 'error');
+        return;
+    }
+
+    // Check if username already exists
+    const userKey = username.toLowerCase();
+    if (registeredUsers[userKey]) {
+        showNotification('❌ Tên đăng nhập đã tồn tại. Vui lòng chọn tên khác!', 'error');
+        return;
+    }
+
+    // Check if email already exists
+    const emailExists = Object.values(registeredUsers).some(user => user.email.toLowerCase() === email.toLowerCase());
+    if (emailExists) {
+        showNotification('❌ Email đã được sử dụng. Vui lòng chọn email khác!', 'error');
         return;
     }
 
@@ -1678,22 +2001,29 @@ async function handleRegister(e) {
 
     try {
         // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 2500));
+        await new Promise(resolve => setTimeout(resolve, 2000));
         
-        // Mock successful registration
+        // Create new user
         const userData = {
             id: Date.now(),
             username: username,
             email: email,
+            password: password, // In real app, this should be hashed
             avatar: `https://via.placeholder.com/40x40/6366f1/ffffff?text=${username.charAt(0).toUpperCase()}`,
             level: 1,
             joinDate: new Date().toISOString(),
             favorites: [],
-            downloads: []
+            downloads: [],
+            totalDownloads: 0,
+            gamesPlayed: 0
         };
 
+        // Save to registered users
+        registeredUsers[userKey] = userData;
+        localStorage.setItem('gameducvong_users', JSON.stringify(registeredUsers));
+
         loginSuccess(userData, true);
-        showNotification('🎉 Tài khoản đã được tạo thành công! Chào mừng bạn đến với GAMEDUCVONG!', 'success');
+        showNotification(`🎉 Tài khoản "${username}" đã được tạo thành công! Chào mừng bạn đến với GAMEDUCVONG!`, 'success');
         
     } catch (error) {
         showNotification('❌ Tạo tài khoản thất bại. Vui lòng thử lại!', 'error');
@@ -1719,8 +2049,11 @@ function loginSuccess(userData, remember) {
     }
 
     // Close modal
-    document.getElementById('auth-modal-overlay').style.display = 'none';
-    document.body.style.overflow = '';
+    const authModalOverlay = document.getElementById('auth-modal-overlay');
+    if (authModalOverlay) {
+        authModalOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+    }
 }
 
 function logout() {
@@ -1746,21 +2079,21 @@ function updateUserInterface() {
 
     if (isLoggedIn && currentUser) {
         // Hide login button, show user dropdown
-        loginBtn.style.display = 'none';
-        userDropdown.style.display = 'block';
+        if (loginBtn) loginBtn.style.display = 'none';
+        if (userDropdown) userDropdown.style.display = 'block';
         
         // Update user info
-        userName.textContent = currentUser.username;
-        userAvatar.src = currentUser.avatar;
+        if (userName) userName.textContent = currentUser.username;
+        if (userAvatar) userAvatar.src = currentUser.avatar;
         
         // Update user level
         const userLevel = document.querySelector('.user-level');
-        userLevel.textContent = `Level ${currentUser.level}`;
+        if (userLevel) userLevel.textContent = `Level ${currentUser.level}`;
         
     } else {
         // Show login button, hide user dropdown
-        loginBtn.style.display = 'flex';
-        userDropdown.style.display = 'none';
+        if (loginBtn) loginBtn.style.display = 'flex';
+        if (userDropdown) userDropdown.style.display = 'none';
     }
 }
 
@@ -1770,12 +2103,20 @@ function checkSavedLogin() {
     const rememberMe = localStorage.getItem('gameducvong_remember') === 'true';
     
     if (savedUser) {
-        currentUser = JSON.parse(savedUser);
-        isLoggedIn = true;
-        updateUserInterface();
-        
-        if (rememberMe) {
-            showNotification(`👋 Chào mừng ${currentUser.username} trở lại!`, 'success');
+        try {
+            currentUser = JSON.parse(savedUser);
+            isLoggedIn = true;
+            updateUserInterface();
+            
+            if (rememberMe) {
+                setTimeout(() => {
+                    showNotification(`👋 Chào mừng ${currentUser.username} trở lại!`, 'success');
+                }, 3000);
+            }
+        } catch (error) {
+            console.error('Error parsing saved user data:', error);
+            localStorage.removeItem('gameducvong_user');
+            sessionStorage.removeItem('gameducvong_user');
         }
     }
 }
@@ -2124,7 +2465,144 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }, 1000);
+    
+    // Show welcome message after age confirmation
+    setTimeout(() => {
+        const ageConfirmed = localStorage.getItem('gameducvong_age_confirmed');
+        if (ageConfirmed === 'true' && !isLoggedIn) {
+            showNotification('🎮 Chào mừng đến với GAMEDUCVONG! Hãy đăng ký tài khoản để trải nghiệm đầy đủ.', 'info');
+        }
+    }, 4000);
 });
+
+// ===== Keyboard Shortcuts Enhancement =====
+document.addEventListener('keydown', (e) => {
+    // Ctrl/Cmd + K for search focus
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        const navSearchBtn = document.getElementById('nav-search-btn');
+        if (navSearchBtn) {
+            navSearchBtn.click();
+        }
+        showNotification('🔍 Tìm kiếm được kích hoạt', 'info');
+    }
+    
+    // Escape to close modals
+    if (e.key === 'Escape') {
+        // Close search modal
+        const searchModal = document.getElementById('search-modal-overlay');
+        if (searchModal && searchModal.style.display === 'flex') {
+            searchModal.style.display = 'none';
+            document.body.style.overflow = '';
+            return;
+        }
+        
+        // Close auth modal
+        const authModal = document.getElementById('auth-modal-overlay');
+        if (authModal && authModal.style.display === 'flex') {
+            authModal.style.display = 'none';
+            document.body.style.overflow = '';
+            return;
+        }
+        
+        // Close sidebar
+        const sidebar = document.getElementById('nav-sidebar');
+        if (sidebar && sidebar.classList.contains('open')) {
+            sidebar.classList.remove('open');
+            setTimeout(() => {
+                document.getElementById('nav-sidebar-overlay').style.display = 'none';
+                document.body.style.overflow = '';
+            }, 400);
+            return;
+        }
+        
+        // Clear main search
+        if (searchInput && searchInput.value) {
+            handleClearSearch();
+            showNotification('🧹 Đã xóa tìm kiếm', 'info');
+        }
+    }
+    
+    // Ctrl + M for menu
+    if ((e.ctrlKey || e.metaKey) && e.key === 'm') {
+        e.preventDefault();
+        const navMenuBtn = document.getElementById('nav-menu-btn');
+        if (navMenuBtn) {
+            navMenuBtn.click();
+        }
+    }
+    
+    // Ctrl + L for login
+    if ((e.ctrlKey || e.metaKey) && e.key === 'l' && !isLoggedIn) {
+        e.preventDefault();
+        const loginBtn = document.getElementById('login-btn');
+        if (loginBtn) {
+            loginBtn.click();
+        }
+    }
+});
+
+// ===== Enhanced Download Tracking =====
+function trackDownload(gameId, gameTitle) {
+    console.log(`Download tracked: ${gameTitle} (${gameId})`);
+    
+    // Update user download history if logged in
+    if (isLoggedIn && currentUser) {
+        if (!currentUser.downloads.includes(gameId)) {
+            currentUser.downloads.push(gameId);
+            currentUser.totalDownloads = (currentUser.totalDownloads || 0) + 1;
+            
+            // Update level based on downloads
+            const newLevel = Math.floor(currentUser.totalDownloads / 5) + 1;
+            if (newLevel > currentUser.level) {
+                currentUser.level = newLevel;
+                showNotification(`🎉 Chúc mừng! Bạn đã lên Level ${newLevel}!`, 'success');
+                updateUserInterface();
+            }
+            
+            // Save updated user data
+            const userKey = currentUser.username.toLowerCase();
+            registeredUsers[userKey] = currentUser;
+            localStorage.setItem('gameducvong_users', JSON.stringify(registeredUsers));
+            
+            // Update current session
+            if (localStorage.getItem('gameducvong_user')) {
+                localStorage.setItem('gameducvong_user', JSON.stringify(currentUser));
+            }
+            if (sessionStorage.getItem('gameducvong_user')) {
+                sessionStorage.setItem('gameducvong_user', JSON.stringify(currentUser));
+            }
+        }
+    }
+    
+    // Add download animation
+    const downloadBtn = event.target.closest('.download-btn');
+    if (downloadBtn) {
+        const originalHTML = downloadBtn.innerHTML;
+        downloadBtn.style.transform = 'scale(0.95)';
+        downloadBtn.innerHTML = '<span style="font-size: 1.2rem;">⏳</span> Đang chuẩn bị...';
+        
+        setTimeout(() => {
+            downloadBtn.style.transform = 'scale(1)';
+            downloadBtn.innerHTML = '<span style="font-size: 1.2rem;">✅</span> Đã sẵn sàng!';
+        }, 1000);
+        
+        setTimeout(() => {
+            downloadBtn.innerHTML = originalHTML;
+        }, 3000);
+    }
+    
+    showNotification(`🎮 Chuẩn bị tải "${gameTitle}"...`, 'success');
+    
+    // Update download count (simulate)
+    const currentDownloads = parseInt(document.getElementById('total-downloads')?.textContent) || 0;
+    const totalDownloadsElement = document.getElementById('total-downloads');
+    if (totalDownloadsElement) {
+        animateValue(totalDownloadsElement, currentDownloads, currentDownloads + 1, 1000);
+    }
+}
 
 console.log('%c🔐 Authentication System Loaded!', 'background: linear-gradient(135deg, #10b981, #059669); color: white; font-size: 14px; font-weight: bold; padding: 8px 16px; border-radius: 6px;');
 console.log('%c🏷️ Enhanced Filter System Loaded!', 'background: linear-gradient(135deg, #f59e0b, #d97706); color: white; font-size: 14px; font-weight: bold; padding: 8px 16px; border-radius: 6px;');
+console.log('%c🔞 Age Warning System Active!', 'background: linear-gradient(135deg, #ef4444, #dc2626); color: white; font-size: 14px; font-weight: bold; padding: 8px 16px; border-radius: 6px;');
+console.log('%c📱 Navigation & Search Modals Ready!', 'background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; font-size: 14px; font-weight: bold; padding: 8px 16px; border-radius: 6px;');

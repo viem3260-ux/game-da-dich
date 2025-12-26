@@ -766,12 +766,190 @@
     <!-- Toast Notifications -->
     <div class="toast-container" id="toast-container"></div>
 
-    <!-- Game Detail Modal -->
-    <div class="modal-overlay" id="game-modal-overlay">
-        <div class="game-modal" id="game-modal">
-            <button class="modal-close" id="modal-close">✕</button>
-            <div class="modal-content" id="modal-content">
-                <!-- Game details will be loaded here -->
+    <!-- Age Warning Modal -->
+    <div class="modal-overlay age-warning-overlay" id="age-warning-overlay" style="display: flex;">
+        <div class="age-warning-modal" id="age-warning-modal">
+            <div class="age-warning-header">
+                <div class="warning-icon">🔞</div>
+                <h2>⚠️ CẢNH BÁO NỘI DUNG 18+</h2>
+            </div>
+            
+            <div class="age-warning-content">
+                <div class="warning-message">
+                    <p><strong>🎮 Thông báo quan trọng:</strong></p>
+                    <p>Website này chứa các game có nội dung dành cho người trưởng thành (18+). Nếu bạn dưới 18 tuổi, việc truy cập và sử dụng nội dung trong website này hoàn toàn thuộc trách nhiệm cá nhân của bạn.</p>
+                    
+                    <div class="warning-divider"></div>
+                    
+                    <p><strong>🌟 Về GAMEDUCVONG:</strong></p>
+                    <p>Chúng tôi tạo ra nhóm và website này với mục đích chia sẻ đam mê game đến cộng đồng game thủ Việt Nam. Chúng tôi cam kết mang đến những bản dịch chất lượng cao, giúp game thủ Việt có thể trải nghiệm những tựa game hay nhất thế giới bằng tiếng Việt.</p>
+                    
+                    <p><strong>💎 Sứ mệnh của chúng tôi:</strong></p>
+                    <ul class="mission-list">
+                        <li>🎯 Việt hóa game chất lượng cao, chính xác và tự nhiên</li>
+                        <li>🤝 Xây dựng cộng đồng game thủ Việt Nam mạnh mẽ</li>
+                        <li>🆓 Chia sẻ miễn phí đến tất cả mọi người</li>
+                        <li>📚 Giáo dục và nâng cao trải nghiệm gaming</li>
+                    </ul>
+                </div>
+                
+                <div class="age-confirmation">
+                    <label class="age-checkbox-wrapper">
+                        <input type="checkbox" id="age-confirm" required>
+                        <span class="age-checkmark"></span>
+                        <span class="age-checkbox-text">Tôi xác nhận đã đủ 18 tuổi và hiểu rõ nội dung cảnh báo</span>
+                    </label>
+                </div>
+                
+                <div class="age-warning-actions">
+                    <button class="age-btn decline" id="age-decline">
+                        <span class="btn-icon">❌</span>
+                        <span class="btn-text">Tôi dưới 18 tuổi</span>
+                    </button>
+                    <button class="age-btn accept" id="age-accept" disabled>
+                        <span class="btn-icon">✅</span>
+                        <span class="btn-text">Tôi đã đủ 18 tuổi - Vào website</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu Sidebar -->
+    <div class="nav-sidebar-overlay" id="nav-sidebar-overlay">
+        <div class="nav-sidebar" id="nav-sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="logo-3d">GDV</div>
+                    <div class="logo-glow-ring"></div>
+                </div>
+                <h3>GAMEDUCVONG</h3>
+                <button class="sidebar-close" id="sidebar-close">✕</button>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <h4>📖 Hướng dẫn tải game</h4>
+                    <div class="guide-content">
+                        <div class="guide-step">
+                            <span class="step-number">1</span>
+                            <div class="step-content">
+                                <h5>🔍 Tìm game yêu thích</h5>
+                                <p>Sử dụng thanh tìm kiếm hoặc lọc theo thể loại, nền tảng để tìm game phù hợp</p>
+                            </div>
+                        </div>
+                        
+                        <div class="guide-step">
+                            <span class="step-number">2</span>
+                            <div class="step-content">
+                                <h5>⬇️ Chọn link tải</h5>
+                                <p>Bấm "Tải Game Ngay" hoặc chọn link thay thế (Google Drive, Mega, MediaFire)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="guide-step">
+                            <span class="step-number">3</span>
+                            <div class="step-content">
+                                <h5>📦 Giải nén và cài đặt</h5>
+                                <p>Giải nén file tải về, chạy file setup.exe và làm theo hướng dẫn</p>
+                            </div>
+                        </div>
+                        
+                        <div class="guide-step">
+                            <span class="step-number">4</span>
+                            <div class="step-content">
+                                <h5>🎮 Thưởng thức game</h5>
+                                <p>Khởi động game và tận hưởng trải nghiệm Việt hóa chất lượng cao!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="download-tips">
+                        <h5>💡 Mẹo tải game hiệu quả:</h5>
+                        <ul>
+                            <li>🚀 Sử dụng IDM hoặc Free Download Manager để tải nhanh hơn</li>
+                            <li>🔒 Tắt antivirus tạm thời khi cài đặt (một số game bị nhận nhầm virus)</li>
+                            <li>💾 Kiểm tra dung lượng ổ cứng trước khi tải</li>
+                            <li>📱 Game mobile: Cho phép cài đặt từ nguồn không xác định</li>
+                            <li>🔧 Cài đặt Visual C++ Redistributable nếu game báo lỗi</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h4>🌟 Về GAMEDUCVONG</h4>
+                    <div class="about-content">
+                        <p><strong>🎯 Tầm nhìn:</strong> Trở thành cộng đồng Việt hóa game hàng đầu Việt Nam, mang đến trải nghiệm gaming tuyệt vời nhất cho game thủ Việt.</p>
+                        
+                        <p><strong>🚀 Thành tựu:</strong></p>
+                        <ul>
+                            <li>✅ Hơn 25+ game AAA đã Việt hóa hoàn chỉnh</li>
+                            <li>👥 Cộng đồng 50,000+ thành viên tích cực</li>
+                            <li>⬇️ Hơn 1 triệu lượt tải game</li>
+                            <li>⭐ Đánh giá trung bình 4.8/5 sao</li>
+                            <li>🏆 Được công nhận bởi cộng đồng game thủ Việt</li>
+                        </ul>
+                        
+                        <p><strong>🤝 Đội ngũ:</strong> Chúng tôi là những game thủ đam mê, có kinh nghiệm dịch thuật và lập trình. Mỗi bản dịch đều được kiểm tra kỹ lưỡng để đảm bảo chất lượng tốt nhất.</p>
+                        
+                        <p><strong>💝 Cam kết:</strong> Tất cả game đều miễn phí, không quảng cáo spam, không virus. Chúng tôi làm việc này vì đam mê và tình yêu với cộng đồng game Việt.</p>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h5>📞 Liên hệ & Hỗ trợ:</h5>
+                        <div class="contact-links">
+                            <a href="https://www.facebook.com/share/1GCT3nGne5/" target="_blank" class="contact-link">
+                                <span class="contact-icon">📘</span>
+                                <span>Admin Chính Chủ</span>
+                            </a>
+                            <a href="https://www.facebook.com/groups/1989187598586537/" target="_blank" class="contact-link">
+                                <span class="contact-icon">👥</span>
+                                <span>Nhóm Facebook</span>
+                            </a>
+                            <a href="#discord" class="contact-link">
+                                <span class="contact-icon">🎮</span>
+                                <span>Discord Server</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Search Modal -->
+    <div class="modal-overlay search-modal-overlay" id="search-modal-overlay">
+        <div class="search-modal" id="search-modal">
+            <div class="search-modal-header">
+                <h3>🔍 Tìm kiếm game</h3>
+                <button class="modal-close" id="search-modal-close">✕</button>
+            </div>
+            
+            <div class="search-modal-content">
+                <div class="enhanced-search-bar">
+                    <div class="search-input-wrapper">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="modal-search-input" placeholder="Nhập tên game, thể loại, developer..." autocomplete="off">
+                        <button class="voice-search-btn" id="modal-voice-search" title="Tìm kiếm bằng giọng nói">🎤</button>
+                    </div>
+                </div>
+                
+                <div class="search-suggestions" id="modal-search-suggestions">
+                    <h4>🔥 Tìm kiếm phổ biến:</h4>
+                    <div class="popular-searches">
+                        <button class="search-suggestion-btn" data-search="RPG">RPG</button>
+                        <button class="search-suggestion-btn" data-search="Hành động">Hành động</button>
+                        <button class="search-suggestion-btn" data-search="Thế giới mở">Thế giới mở</button>
+                        <button class="search-suggestion-btn" data-search="Visual Novel">Visual Novel</button>
+                        <button class="search-suggestion-btn" data-search="Indie">Indie</button>
+                        <button class="search-suggestion-btn" data-search="Multiplayer">Multiplayer</button>
+                    </div>
+                </div>
+                
+                <div class="search-results" id="modal-search-results">
+                    <!-- Search results will appear here -->
+                </div>
             </div>
         </div>
     </div>
