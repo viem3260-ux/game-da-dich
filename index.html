@@ -127,6 +127,45 @@
                         <span class="btn-icon">🌙</span>
                         <div class="btn-ripple"></div>
                     </button>
+                    <div class="user-menu" id="user-menu">
+                        <button class="login-btn" id="login-btn" title="Đăng nhập">
+                            <span class="btn-icon">👤</span>
+                            <span class="btn-text">Đăng nhập</span>
+                            <div class="btn-ripple"></div>
+                        </button>
+                        <div class="user-dropdown" id="user-dropdown" style="display: none;">
+                            <div class="user-avatar">
+                                <img src="https://via.placeholder.com/40x40/6366f1/ffffff?text=U" alt="User" id="user-avatar">
+                            </div>
+                            <div class="user-info">
+                                <span class="user-name" id="user-name">Gaming Pro</span>
+                                <span class="user-level">Level 99</span>
+                            </div>
+                            <div class="dropdown-menu">
+                                <a href="#profile" class="dropdown-item">
+                                    <span class="item-icon">👤</span>
+                                    <span>Hồ sơ</span>
+                                </a>
+                                <a href="#favorites" class="dropdown-item">
+                                    <span class="item-icon">❤️</span>
+                                    <span>Yêu thích</span>
+                                </a>
+                                <a href="#downloads" class="dropdown-item">
+                                    <span class="item-icon">⬇️</span>
+                                    <span>Đã tải</span>
+                                </a>
+                                <a href="#settings" class="dropdown-item">
+                                    <span class="item-icon">⚙️</span>
+                                    <span>Cài đặt</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#logout" class="dropdown-item logout" id="logout-btn">
+                                    <span class="item-icon">🚪</span>
+                                    <span>Đăng xuất</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <button class="nav-menu-btn" id="nav-menu-btn" title="Menu">
                         <span class="btn-icon">☰</span>
                         <div class="btn-ripple"></div>
@@ -342,6 +381,10 @@
                         <option value="FPS">FPS</option>
                         <option value="Visual Novel">Visual Novel</option>
                         <option value="Indie">Indie</option>
+                        <option value="Mô phỏng">Mô phỏng</option>
+                        <option value="Chiến thuật">Chiến thuật</option>
+                        <option value="Racing">Racing</option>
+                        <option value="Sports">Sports</option>
                     </select>
                 </div>
                 
@@ -349,11 +392,38 @@
                     <label class="filter-label">Nền tảng</label>
                     <select id="platform-filter" class="filter-select">
                         <option value="">Tất cả nền tảng</option>
-                        <option value="PC">PC</option>
-                        <option value="PlayStation">PlayStation</option>
-                        <option value="Xbox">Xbox</option>
-                        <option value="Nintendo Switch">Nintendo Switch</option>
-                        <option value="Mobile">Mobile</option>
+                        <option value="PC">🖥️ PC</option>
+                        <option value="Android">📱 Android</option>
+                        <option value="iOS">🍎 iOS</option>
+                        <option value="PlayStation">🎮 PlayStation</option>
+                        <option value="Xbox">🎯 Xbox</option>
+                        <option value="Nintendo Switch">🎮 Nintendo Switch</option>
+                        <option value="Mobile">📱 Mobile</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Ngôn ngữ</label>
+                    <select id="language-filter" class="filter-select">
+                        <option value="">Tất cả ngôn ngữ</option>
+                        <option value="Việt hóa">🇻🇳 Việt hóa</option>
+                        <option value="English">�🇸 English</option>
+                        <option value="Japanese">🇯🇵 Japanese</option>
+                        <option value="Korean">🇰🇷 Korean</option>
+                        <option value="Chinese">🇨🇳 Chinese</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Engine</label>
+                    <select id="engine-filter" class="filter-select">
+                        <option value="">Tất cả engine</option>
+                        <option value="Unity">🔷 Unity</option>
+                        <option value="Unreal">🔶 Unreal</option>
+                        <option value="Godot">🟢 Godot</option>
+                        <option value="GameMaker">🟡 GameMaker</option>
+                        <option value="Construct">🔵 Construct</option>
+                        <option value="Custom">⚙️ Custom</option>
                     </select>
                 </div>
                 
@@ -373,14 +443,108 @@
                 </div>
             </div>
             
-            <!-- Filter Tags -->
-            <div class="filter-tags" id="filter-tags">
-                <span class="filter-tag-label">Lọc nhanh:</span>
-                <button class="filter-tag" data-filter="featured">⭐ Nổi bật</button>
-                <button class="filter-tag" data-filter="new">🆕 Mới</button>
-                <button class="filter-tag" data-filter="popular">🔥 Phổ biến</button>
-                <button class="filter-tag" data-filter="small">📦 Nhẹ</button>
-                <button class="filter-tag" data-filter="free">💰 Miễn phí</button>
+            <!-- Enhanced Filter Tags -->
+            <div class="filter-tags-container">
+                <div class="filter-tags" id="filter-tags">
+                    <span class="filter-tag-label">🏷️ Lọc nhanh:</span>
+                    <button class="filter-tag premium" data-filter="featured">⭐ Nổi bật</button>
+                    <button class="filter-tag premium" data-filter="new">🆕 Mới</button>
+                    <button class="filter-tag premium" data-filter="popular">🔥 Phổ biến</button>
+                    <button class="filter-tag premium" data-filter="small">📦 Nhẹ</button>
+                    <button class="filter-tag premium" data-filter="free">💰 Miễn phí</button>
+                    <button class="filter-tag premium" data-filter="multiplayer">👥 Multiplayer</button>
+                    <button class="filter-tag premium" data-filter="singleplayer">👤 Singleplayer</button>
+                </div>
+                
+                <!-- Platform Tags -->
+                <div class="platform-tags" id="platform-tags">
+                    <span class="filter-tag-label">🖥️ Nền tảng:</span>
+                    <button class="platform-tag" data-platform="PC">
+                        <span class="tag-icon">🖥️</span>
+                        <span class="tag-text">PC</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                    <button class="platform-tag" data-platform="Android">
+                        <span class="tag-icon">📱</span>
+                        <span class="tag-text">Android</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                    <button class="platform-tag" data-platform="iOS">
+                        <span class="tag-icon">🍎</span>
+                        <span class="tag-text">iOS</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                    <button class="platform-tag" data-platform="PlayStation">
+                        <span class="tag-icon">🎮</span>
+                        <span class="tag-text">PlayStation</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                    <button class="platform-tag" data-platform="Xbox">
+                        <span class="tag-icon">🎯</span>
+                        <span class="tag-text">Xbox</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                    <button class="platform-tag" data-platform="Nintendo">
+                        <span class="tag-icon">🎮</span>
+                        <span class="tag-text">Nintendo</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                </div>
+                
+                <!-- Language Tags -->
+                <div class="language-tags" id="language-tags">
+                    <span class="filter-tag-label">🌍 Ngôn ngữ:</span>
+                    <button class="language-tag" data-language="vietnamese">
+                        <span class="tag-icon">🇻🇳</span>
+                        <span class="tag-text">Việt hóa</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                    <button class="language-tag" data-language="english">
+                        <span class="tag-icon">🇺🇸</span>
+                        <span class="tag-text">English</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                    <button class="language-tag" data-language="japanese">
+                        <span class="tag-icon">🇯🇵</span>
+                        <span class="tag-text">Japanese</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                    <button class="language-tag" data-language="korean">
+                        <span class="tag-icon">🇰🇷</span>
+                        <span class="tag-text">Korean</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                </div>
+                
+                <!-- Engine Tags -->
+                <div class="engine-tags" id="engine-tags">
+                    <span class="filter-tag-label">⚙️ Game Engine:</span>
+                    <button class="engine-tag" data-engine="unity">
+                        <span class="tag-icon">🔷</span>
+                        <span class="tag-text">Unity</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                    <button class="engine-tag" data-engine="unreal">
+                        <span class="tag-icon">🔶</span>
+                        <span class="tag-text">Unreal</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                    <button class="engine-tag" data-engine="godot">
+                        <span class="tag-icon">🟢</span>
+                        <span class="tag-text">Godot</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                    <button class="engine-tag" data-engine="gamemaker">
+                        <span class="tag-icon">🟡</span>
+                        <span class="tag-text">GameMaker</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                    <button class="engine-tag" data-engine="construct">
+                        <span class="tag-icon">🔵</span>
+                        <span class="tag-text">Construct</span>
+                        <div class="tag-glow"></div>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -608,6 +772,165 @@
             <button class="modal-close" id="modal-close">✕</button>
             <div class="modal-content" id="modal-content">
                 <!-- Game details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Login/Register Modal -->
+    <div class="modal-overlay" id="auth-modal-overlay">
+        <div class="auth-modal" id="auth-modal">
+            <button class="modal-close" id="auth-modal-close">✕</button>
+            
+            <!-- Login Form -->
+            <div class="auth-form login-form" id="login-form">
+                <div class="auth-header">
+                    <div class="auth-logo">
+                        <div class="logo-3d">GDV</div>
+                        <div class="logo-glow-ring"></div>
+                    </div>
+                    <h2>🎮 Đăng nhập GAMEDUCVONG</h2>
+                    <p>Truy cập vào thế giới game Việt hóa chất lượng cao</p>
+                </div>
+                
+                <form class="auth-form-content" id="login-form-content">
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="login-username" placeholder="Tên đăng nhập hoặc Email" required>
+                            <div class="input-glow"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="login-password" placeholder="Mật khẩu" required>
+                            <button type="button" class="password-toggle" id="login-password-toggle">👁️</button>
+                            <div class="input-glow"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="remember-me">
+                            <span class="checkmark"></span>
+                            <span class="checkbox-text">Ghi nhớ đăng nhập</span>
+                        </label>
+                        <a href="#forgot-password" class="forgot-password">Quên mật khẩu?</a>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn login-btn-submit">
+                        <span class="btn-text">🚀 Đăng nhập</span>
+                        <div class="btn-glow"></div>
+                        <div class="btn-particles">
+                            <span class="btn-particle"></span>
+                            <span class="btn-particle"></span>
+                            <span class="btn-particle"></span>
+                        </div>
+                    </button>
+                    
+                    <div class="social-login">
+                        <p>Hoặc đăng nhập với:</p>
+                        <div class="social-buttons">
+                            <button type="button" class="social-btn google">
+                                <span class="social-icon">🔍</span>
+                                <span>Google</span>
+                            </button>
+                            <button type="button" class="social-btn facebook">
+                                <span class="social-icon">📘</span>
+                                <span>Facebook</span>
+                            </button>
+                            <button type="button" class="social-btn discord">
+                                <span class="social-icon">🎮</span>
+                                <span>Discord</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="auth-switch">
+                        <p>Chưa có tài khoản? <a href="#register" id="show-register">Đăng ký ngay</a></p>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Register Form -->
+            <div class="auth-form register-form" id="register-form" style="display: none;">
+                <div class="auth-header">
+                    <div class="auth-logo">
+                        <div class="logo-3d">GDV</div>
+                        <div class="logo-glow-ring"></div>
+                    </div>
+                    <h2>✨ Tạo tài khoản GAMEDUCVONG</h2>
+                    <p>Tham gia cộng đồng game thủ Việt Nam</p>
+                </div>
+                
+                <form class="auth-form-content" id="register-form-content">
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="register-username" placeholder="Tên đăng nhập" required>
+                            <div class="input-glow"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">📧</span>
+                            <input type="email" id="register-email" placeholder="Email" required>
+                            <div class="input-glow"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="register-password" placeholder="Mật khẩu" required>
+                            <button type="button" class="password-toggle" id="register-password-toggle">👁️</button>
+                            <div class="input-glow"></div>
+                        </div>
+                        <div class="password-strength" id="password-strength">
+                            <div class="strength-bar">
+                                <div class="strength-fill"></div>
+                            </div>
+                            <span class="strength-text">Độ mạnh mật khẩu</span>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="register-confirm-password" placeholder="Xác nhận mật khẩu" required>
+                            <div class="input-glow"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="agree-terms" required>
+                            <span class="checkmark"></span>
+                            <span class="checkbox-text">Tôi đồng ý với <a href="#terms">Điều khoản sử dụng</a> và <a href="#privacy">Chính sách bảo mật</a></span>
+                        </label>
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="newsletter">
+                            <span class="checkmark"></span>
+                            <span class="checkbox-text">Nhận thông báo về game mới</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn register-btn-submit">
+                        <span class="btn-text">🎉 Tạo tài khoản</span>
+                        <div class="btn-glow"></div>
+                        <div class="btn-particles">
+                            <span class="btn-particle"></span>
+                            <span class="btn-particle"></span>
+                            <span class="btn-particle"></span>
+                        </div>
+                    </button>
+                    
+                    <div class="auth-switch">
+                        <p>Đã có tài khoản? <a href="#login" id="show-login">Đăng nhập</a></p>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@
     "genre": ["Visual Novel", "Phiêu lưu", "Mô phỏng"],
     "rating": 4.5,
     "releaseDate": "2024-11-15",
-    "platform": ["PC"],
+    "platform": ["PC", "Android"],
     "size": "3.2 GB",
     "language": "Tiếng Việt (100%)",
     "developer": "Appetite",
@@ -16,6 +16,8 @@
     "featured": true,
     "downloads": 8420,
     "tags": ["Visual Novel", "Story Rich", "Choices Matter", "Adult"],
+    "engine": "Unity",
+    "price": 0,
     "systemRequirements": {
       "os": "Windows 7/8/10/11",
       "processor": "Intel Core i3 / AMD equivalent",
@@ -58,6 +60,8 @@
     "featured": true,
     "downloads": 45750,
     "tags": ["Open World", "RPG", "Fantasy", "Story Rich", "Atmospheric"],
+    "engine": "REDengine",
+    "price": 0,
     "systemRequirements": {
       "os": "Windows 10/11 64-bit",
       "processor": "Intel Core i7-9700K / AMD Ryzen 7 3700X",
@@ -724,6 +728,211 @@
       {
         "name": "Google Drive",
         "url": "https://drive.google.com/file/d/1DS789/view?usp=sharing"
+      }
+    ]
+  },
+  {
+    "id": "game-021",
+    "title": "Genshin Impact",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Genshin+Impact",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=Genshin",
+    "description": "Game nhập vai thế giới mở miễn phí với đồ họa anime tuyệt đẹp. Khám phá thế giới Teyvat rộng lớn, thu thập nhân vật với hệ thống gacha độc đáo. Hỗ trợ đa nền tảng và chơi cùng bạn bè.",
+    "genre": ["RPG", "Thế giới mở", "Gacha"],
+    "rating": 4.6,
+    "releaseDate": "2024-12-01",
+    "platform": ["PC", "Android", "iOS", "PlayStation 5"],
+    "size": "15 GB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "miHoYo",
+    "translationStatus": "Hoàn thành",
+    "featured": true,
+    "downloads": 125000,
+    "tags": ["Open World", "Anime", "Multiplayer", "Free to Play", "Gacha"],
+    "engine": "Unity",
+    "price": 0,
+    "systemRequirements": {
+      "os": "Windows 7/8/10/11, Android 7.0+, iOS 9.0+",
+      "processor": "Intel Core i5 / AMD equivalent",
+      "memory": "8 GB RAM",
+      "graphics": "NVIDIA GTX 1030 / AMD equivalent",
+      "storage": "15 GB"
+    },
+    "trailer": "https://youtube.com/watch?v=TAlKhARUcoY",
+    "screenshots": [
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=Genshin+Screenshot+1",
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=Genshin+Screenshot+2"
+    ],
+    "download": "https://genshin.hoyoverse.com/",
+    "alternativeLinks": [
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact"
+      },
+      {
+        "name": "App Store",
+        "url": "https://apps.apple.com/app/genshin-impact/id1517783697"
+      }
+    ]
+  },
+  {
+    "id": "game-022",
+    "title": "Among Us",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Among+Us",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=Among+Us",
+    "description": "Game multiplayer xã hội cực kỳ vui nhộn. Làm việc nhóm để hoàn thành nhiệm vụ trên tàu vũ trụ, nhưng cẩn thận với những kẻ phản bội trong nhóm. Hỗ trợ 4-15 người chơi online hoặc local.",
+    "genre": ["Multiplayer", "Xã hội", "Indie"],
+    "rating": 4.3,
+    "releaseDate": "2024-10-15",
+    "platform": ["PC", "Android", "iOS", "Nintendo Switch"],
+    "size": "250 MB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "InnerSloth",
+    "translationStatus": "Hoàn thành",
+    "featured": false,
+    "downloads": 89000,
+    "tags": ["Multiplayer", "Social Deduction", "Casual", "Cross-Platform"],
+    "engine": "Unity",
+    "price": 0,
+    "systemRequirements": {
+      "os": "Windows 7/8/10/11, Android 4.2+, iOS 10.0+",
+      "processor": "Intel Core i3 / AMD equivalent",
+      "memory": "1 GB RAM",
+      "graphics": "Integrated Graphics",
+      "storage": "250 MB"
+    },
+    "trailer": "https://youtube.com/watch?v=nsJZ_kKjXcE",
+    "screenshots": [
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=Among+Us+Screenshot+1"
+    ],
+    "download": "https://store.steampowered.com/app/945360/Among_Us/",
+    "alternativeLinks": [
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.innersloth.spacemafia"
+      },
+      {
+        "name": "App Store",
+        "url": "https://apps.apple.com/app/among-us/id1351168404"
+      }
+    ]
+  },
+  {
+    "id": "game-023",
+    "title": "Cuphead",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Cuphead",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=Cuphead",
+    "description": "Game platformer với phong cách hoạt hình cổ điển những năm 1930. Độ khó cao với các trận boss fight đầy thách thức. Đồ họa vẽ tay tuyệt đẹp và nhạc jazz sôi động.",
+    "genre": ["Platformer", "Hành động", "Indie"],
+    "rating": 4.7,
+    "releaseDate": "2024-09-10",
+    "platform": ["PC", "Xbox", "PlayStation", "Nintendo Switch"],
+    "size": "4 GB",
+    "language": "English (Phụ đề Việt)",
+    "developer": "StudioMDHR",
+    "translationStatus": "Phụ đề",
+    "featured": true,
+    "downloads": 34500,
+    "tags": ["Platformer", "Difficult", "Hand-drawn", "Boss Rush", "Co-op"],
+    "engine": "Unity",
+    "price": 19.99,
+    "systemRequirements": {
+      "os": "Windows 7/8/10/11",
+      "processor": "Intel Core i3-4340 / AMD FX-6300",
+      "memory": "4 GB RAM",
+      "graphics": "NVIDIA GTX 630 / AMD Radeon HD 6570",
+      "storage": "4 GB"
+    },
+    "trailer": "https://youtube.com/watch?v=NN-9SQXoi50",
+    "screenshots": [
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=Cuphead+Screenshot+1",
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=Cuphead+Screenshot+2"
+    ],
+    "download": "https://store.steampowered.com/app/268910/Cuphead/",
+    "alternativeLinks": [
+      {
+        "name": "Epic Games",
+        "url": "https://store.epicgames.com/en-US/p/cuphead"
+      }
+    ]
+  },
+  {
+    "id": "game-024",
+    "title": "Ori and the Will of the Wisps",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Ori+Will+Wisps",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=Ori",
+    "description": "Game platformer metroidvania với đồ họa tuyệt đẹp và cốt truyện cảm động. Theo chân Ori trong hành trình cứu rỗng rừng Niwen. Gameplay mượt mà với hệ thống di chuyển linh hoạt.",
+    "genre": ["Metroidvania", "Platformer", "Phiêu lưu"],
+    "rating": 4.8,
+    "releaseDate": "2024-08-25",
+    "platform": ["PC", "Xbox", "Nintendo Switch"],
+    "size": "8 GB",
+    "language": "English (Phụ đề Việt)",
+    "developer": "Moon Studios",
+    "translationStatus": "Phụ đề",
+    "featured": true,
+    "downloads": 28700,
+    "tags": ["Metroidvania", "Beautiful", "Emotional", "Atmospheric", "Indie"],
+    "engine": "Unity",
+    "price": 29.99,
+    "systemRequirements": {
+      "os": "Windows 10 64-bit",
+      "processor": "Intel Core i5-8400 / AMD Ryzen 5 2600",
+      "memory": "8 GB RAM",
+      "graphics": "NVIDIA GTX 970 / AMD RX 570",
+      "storage": "8 GB"
+    },
+    "trailer": "https://youtube.com/watch?v=2kPSl2vyu2Y",
+    "screenshots": [
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=Ori+Screenshot+1"
+    ],
+    "download": "https://store.steampowered.com/app/1057090/Ori_and_the_Will_of_the_Wisps/",
+    "alternativeLinks": [
+      {
+        "name": "Microsoft Store",
+        "url": "https://www.microsoft.com/store/productId/9N8CD0XZKLP4"
+      }
+    ]
+  },
+  {
+    "id": "game-025",
+    "title": "Fall Guys",
+    "image": "https://via.placeholder.com/400x220/1a1f35/64748b?text=Fall+Guys",
+    "thumbnail": "https://via.placeholder.com/200x110/1a1f35/64748b?text=Fall+Guys",
+    "description": "Game battle royale vui nhộn với 60 người chơi. Tham gia các mini-game đầy màu sắc và cạnh tranh để trở thành người cuối cùng. Phong cách đáng yêu và gameplay dễ tiếp cận.",
+    "genre": ["Battle Royale", "Multiplayer", "Casual"],
+    "rating": 4.2,
+    "releaseDate": "2024-11-30",
+    "platform": ["PC", "PlayStation", "Xbox", "Nintendo Switch", "Android", "iOS"],
+    "size": "2 GB",
+    "language": "Tiếng Việt (100%)",
+    "developer": "Mediatonic",
+    "translationStatus": "Hoàn thành",
+    "featured": false,
+    "downloads": 156000,
+    "tags": ["Battle Royale", "Multiplayer", "Casual", "Colorful", "Free to Play"],
+    "engine": "Unity",
+    "price": 0,
+    "systemRequirements": {
+      "os": "Windows 10 64-bit",
+      "processor": "Intel Core i5 / AMD equivalent",
+      "memory": "8 GB RAM",
+      "graphics": "NVIDIA GTX 660 / AMD Radeon HD 7950",
+      "storage": "2 GB"
+    },
+    "trailer": "https://youtube.com/watch?v=FcIlITzPk4o",
+    "screenshots": [
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=Fall+Guys+Screenshot+1",
+      "https://via.placeholder.com/800x450/1a1f35/64748b?text=Fall+Guys+Screenshot+2"
+    ],
+    "download": "https://store.steampowered.com/app/1097150/Fall_Guys/",
+    "alternativeLinks": [
+      {
+        "name": "Epic Games",
+        "url": "https://store.epicgames.com/en-US/p/fall-guys"
+      },
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.mediatonic.fallguys_client"
       }
     ]
   },

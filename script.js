@@ -1455,3 +1455,676 @@ document.addEventListener('DOMContentLoaded', () => {
 
 console.log('%c🚀 GAMEDUCVONG Premium Features Loaded!', 'background: linear-gradient(135deg, #f093fb, #f5576c); color: white; font-size: 16px; font-weight: bold; padding: 10px 20px; border-radius: 8px;');
 console.log('%c✨ Features: Voice Search, Keyboard Shortcuts, Enhanced Animations, Matrix Rain, Particle System', 'color: #a78bfa; font-size: 12px;');
+// ===== Authentication System =====
+let currentUser = null;
+let isLoggedIn = false;
+
+// ===== Authentication Modal Management =====
+function setupAuthModal() {
+    const loginBtn = document.getElementById('login-btn');
+    const authModalOverlay = document.getElementById('auth-modal-overlay');
+    const authModalClose = document.getElementById('auth-modal-close');
+    const showRegister = document.getElementById('show-register');
+    const showLogin = document.getElementById('show-login');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const userMenu = document.getElementById('user-menu');
+    const userDropdown = document.getElementById('user-dropdown');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    // Show login modal
+    loginBtn?.addEventListener('click', () => {
+        authModalOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        showLoginForm();
+    });
+
+    // Close modal
+    authModalClose?.addEventListener('click', closeAuthModal);
+    authModalOverlay?.addEventListener('click', (e) => {
+        if (e.target === authModalOverlay) {
+            closeAuthModal();
+        }
+    });
+
+    // Switch between login and register
+    showRegister?.addEventListener('click', (e) => {
+        e.preventDefault();
+        showRegisterForm();
+    });
+
+    showLogin?.addEventListener('click', (e) => {
+        e.preventDefault();
+        showLoginForm();
+    });
+
+    // Toggle user dropdown
+    userMenu?.addEventListener('click', (e) => {
+        if (isLoggedIn) {
+            e.stopPropagation();
+            userDropdown.style.display = userDropdown.style.display === 'none' ? 'block' : 'none';
+        }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+        if (userDropdown) {
+            userDropdown.style.display = 'none';
+        }
+    });
+
+    // Logout
+    logoutBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        logout();
+    });
+
+    function closeAuthModal() {
+        authModalOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    function showLoginForm() {
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+    }
+
+    function showRegisterForm() {
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+    }
+}
+
+// ===== Password Strength Checker =====
+function setupPasswordStrength() {
+    const passwordInput = document.getElementById('register-password');
+    const strengthFill = document.querySelector('.strength-fill');
+    const strengthText = document.querySelector('.strength-text');
+
+    passwordInput?.addEventListener('input', (e) => {
+        const password = e.target.value;
+        const strength = calculatePasswordStrength(password);
+        
+        strengthFill.style.width = `${strength.percentage}%`;
+        strengthText.textContent = strength.text;
+        strengthText.style.color = strength.color;
+    });
+}
+
+function calculatePasswordStrength(password) {
+    let score = 0;
+    let feedback = [];
+
+    if (password.length >= 8) score += 25;
+    else feedback.push('ít nhất 8 ký tự');
+
+    if (/[a-z]/.test(password)) score += 25;
+    else feedback.push('chữ thường');
+
+    if (/[A-Z]/.test(password)) score += 25;
+    else feedback.push('chữ hoa');
+
+    if (/[0-9]/.test(password)) score += 25;
+    else feedback.push('số');
+
+    if (/[^A-Za-z0-9]/.test(password)) score += 25;
+    else feedback.push('ký tự đặc biệt');
+
+    let text, color;
+    if (score < 50) {
+        text = `Yếu - Cần: ${feedback.join(', ')}`;
+        color = 'var(--error)';
+    } else if (score < 75) {
+        text = 'Trung bình - Có thể cải thiện';
+        color = 'var(--warning)';
+    } else if (score < 100) {
+        text = 'Mạnh - Tốt';
+        color = 'var(--success)';
+    } else {
+        text = 'Rất mạnh - Xuất sắc!';
+        color = 'var(--success)';
+    }
+
+    return { percentage: Math.min(score, 100), text, color };
+}
+
+// ===== Password Toggle =====
+function setupPasswordToggle() {
+    const toggleButtons = document.querySelectorAll('.password-toggle');
+    
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const input = button.previousElementSibling;
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            button.textContent = type === 'password' ? '👁️' : '🙈';
+        });
+    });
+}
+
+// ===== Form Submission =====
+function setupFormSubmission() {
+    const loginForm = document.getElementById('login-form-content');
+    const registerForm = document.getElementById('register-form-content');
+
+    loginForm?.addEventListener('submit', handleLogin);
+    registerForm?.addEventListener('submit', handleRegister);
+}
+
+async function handleLogin(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
+    const rememberMe = document.getElementById('remember-me').checked;
+
+    // Show loading state
+    const submitBtn = e.target.querySelector('.auth-btn');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span class="btn-text">🔄 Đang đăng nhập...</span>';
+    submitBtn.disabled = true;
+
+    try {
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Mock successful login
+        const userData = {
+            id: 1,
+            username: username,
+            email: `${username}@gameducvong.com`,
+            avatar: `https://via.placeholder.com/40x40/6366f1/ffffff?text=${username.charAt(0).toUpperCase()}`,
+            level: Math.floor(Math.random() * 100) + 1,
+            joinDate: new Date().toISOString(),
+            favorites: [],
+            downloads: []
+        };
+
+        loginSuccess(userData, rememberMe);
+        showNotification('🎉 Đăng nhập thành công! Chào mừng bạn trở lại!', 'success');
+        
+    } catch (error) {
+        showNotification('❌ Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin!', 'error');
+    } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+}
+
+async function handleRegister(e) {
+    e.preventDefault();
+    const username = document.getElementById('register-username').value;
+    const email = document.getElementById('register-email').value;
+    const password = document.getElementById('register-password').value;
+    const confirmPassword = document.getElementById('register-confirm-password').value;
+    const agreeTerms = document.getElementById('agree-terms').checked;
+
+    // Validation
+    if (password !== confirmPassword) {
+        showNotification('❌ Mật khẩu xác nhận không khớp!', 'error');
+        return;
+    }
+
+    if (!agreeTerms) {
+        showNotification('❌ Vui lòng đồng ý với điều khoản sử dụng!', 'error');
+        return;
+    }
+
+    // Show loading state
+    const submitBtn = e.target.querySelector('.auth-btn');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span class="btn-text">🔄 Đang tạo tài khoản...</span>';
+    submitBtn.disabled = true;
+
+    try {
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 2500));
+        
+        // Mock successful registration
+        const userData = {
+            id: Date.now(),
+            username: username,
+            email: email,
+            avatar: `https://via.placeholder.com/40x40/6366f1/ffffff?text=${username.charAt(0).toUpperCase()}`,
+            level: 1,
+            joinDate: new Date().toISOString(),
+            favorites: [],
+            downloads: []
+        };
+
+        loginSuccess(userData, true);
+        showNotification('🎉 Tài khoản đã được tạo thành công! Chào mừng bạn đến với GAMEDUCVONG!', 'success');
+        
+    } catch (error) {
+        showNotification('❌ Tạo tài khoản thất bại. Vui lòng thử lại!', 'error');
+    } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+}
+
+function loginSuccess(userData, remember) {
+    currentUser = userData;
+    isLoggedIn = true;
+
+    // Update UI
+    updateUserInterface();
+    
+    // Save to localStorage if remember me
+    if (remember) {
+        localStorage.setItem('gameducvong_user', JSON.stringify(userData));
+        localStorage.setItem('gameducvong_remember', 'true');
+    } else {
+        sessionStorage.setItem('gameducvong_user', JSON.stringify(userData));
+    }
+
+    // Close modal
+    document.getElementById('auth-modal-overlay').style.display = 'none';
+    document.body.style.overflow = '';
+}
+
+function logout() {
+    currentUser = null;
+    isLoggedIn = false;
+    
+    // Clear storage
+    localStorage.removeItem('gameducvong_user');
+    localStorage.removeItem('gameducvong_remember');
+    sessionStorage.removeItem('gameducvong_user');
+    
+    // Update UI
+    updateUserInterface();
+    
+    showNotification('👋 Đã đăng xuất thành công. Hẹn gặp lại!', 'info');
+}
+
+function updateUserInterface() {
+    const loginBtn = document.getElementById('login-btn');
+    const userDropdown = document.getElementById('user-dropdown');
+    const userName = document.getElementById('user-name');
+    const userAvatar = document.getElementById('user-avatar');
+
+    if (isLoggedIn && currentUser) {
+        // Hide login button, show user dropdown
+        loginBtn.style.display = 'none';
+        userDropdown.style.display = 'block';
+        
+        // Update user info
+        userName.textContent = currentUser.username;
+        userAvatar.src = currentUser.avatar;
+        
+        // Update user level
+        const userLevel = document.querySelector('.user-level');
+        userLevel.textContent = `Level ${currentUser.level}`;
+        
+    } else {
+        // Show login button, hide user dropdown
+        loginBtn.style.display = 'flex';
+        userDropdown.style.display = 'none';
+    }
+}
+
+// ===== Check for saved login =====
+function checkSavedLogin() {
+    const savedUser = localStorage.getItem('gameducvong_user') || sessionStorage.getItem('gameducvong_user');
+    const rememberMe = localStorage.getItem('gameducvong_remember') === 'true';
+    
+    if (savedUser) {
+        currentUser = JSON.parse(savedUser);
+        isLoggedIn = true;
+        updateUserInterface();
+        
+        if (rememberMe) {
+            showNotification(`👋 Chào mừng ${currentUser.username} trở lại!`, 'success');
+        }
+    }
+}
+
+// ===== Enhanced Filter System =====
+let activeFilters = {
+    platform: null,
+    language: null,
+    engine: null,
+    genre: null,
+    tags: []
+};
+
+function setupEnhancedFilters() {
+    // Platform tags
+    const platformTags = document.querySelectorAll('.platform-tag');
+    platformTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            const platform = tag.dataset.platform;
+            toggleFilter('platform', platform, tag);
+        });
+    });
+
+    // Language tags
+    const languageTags = document.querySelectorAll('.language-tag');
+    languageTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            const language = tag.dataset.language;
+            toggleFilter('language', language, tag);
+        });
+    });
+
+    // Engine tags
+    const engineTags = document.querySelectorAll('.engine-tag');
+    engineTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            const engine = tag.dataset.engine;
+            toggleFilter('engine', engine, tag);
+        });
+    });
+
+    // Premium filter tags
+    const filterTags = document.querySelectorAll('.filter-tag.premium');
+    filterTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            const filter = tag.dataset.filter;
+            toggleArrayFilter('tags', filter, tag);
+        });
+    });
+
+    // Traditional select filters
+    const genreFilter = document.getElementById('genre-filter');
+    const platformFilter = document.getElementById('platform-filter');
+    const languageFilter = document.getElementById('language-filter');
+    const engineFilter = document.getElementById('engine-filter');
+
+    genreFilter?.addEventListener('change', (e) => {
+        activeFilters.genre = e.target.value || null;
+        applyFilters();
+    });
+
+    platformFilter?.addEventListener('change', (e) => {
+        activeFilters.platform = e.target.value || null;
+        updateTagState('.platform-tag', e.target.value);
+        applyFilters();
+    });
+
+    languageFilter?.addEventListener('change', (e) => {
+        activeFilters.language = e.target.value || null;
+        updateTagState('.language-tag', e.target.value);
+        applyFilters();
+    });
+
+    engineFilter?.addEventListener('change', (e) => {
+        activeFilters.engine = e.target.value || null;
+        updateTagState('.engine-tag', e.target.value);
+        applyFilters();
+    });
+}
+
+function toggleFilter(type, value, element) {
+    // Remove active class from siblings
+    const siblings = element.parentElement.querySelectorAll(`.${element.className.split(' ')[0]}`);
+    siblings.forEach(sibling => sibling.classList.remove('active'));
+
+    // Toggle current filter
+    if (activeFilters[type] === value) {
+        activeFilters[type] = null;
+        element.classList.remove('active');
+    } else {
+        activeFilters[type] = value;
+        element.classList.add('active');
+    }
+
+    // Update corresponding select
+    updateSelectFilter(type, activeFilters[type]);
+    applyFilters();
+    
+    showNotification(`🏷️ ${type === 'platform' ? 'Nền tảng' : type === 'language' ? 'Ngôn ngữ' : 'Engine'}: ${value || 'Tất cả'}`, 'info');
+}
+
+function toggleArrayFilter(type, value, element) {
+    const index = activeFilters[type].indexOf(value);
+    
+    if (index > -1) {
+        activeFilters[type].splice(index, 1);
+        element.classList.remove('active');
+    } else {
+        activeFilters[type].push(value);
+        element.classList.add('active');
+    }
+
+    applyFilters();
+    showNotification(`🏷️ Filter: ${value}`, 'info');
+}
+
+function updateSelectFilter(type, value) {
+    const selectMap = {
+        platform: 'platform-filter',
+        language: 'language-filter',
+        engine: 'engine-filter'
+    };
+    
+    const select = document.getElementById(selectMap[type]);
+    if (select) {
+        select.value = value || '';
+    }
+}
+
+function updateTagState(selector, value) {
+    const tags = document.querySelectorAll(selector);
+    tags.forEach(tag => {
+        tag.classList.remove('active');
+        if (tag.dataset.platform === value || tag.dataset.language === value || tag.dataset.engine === value) {
+            tag.classList.add('active');
+        }
+    });
+}
+
+function applyFilters() {
+    let filtered = [...allGames];
+
+    // Apply platform filter
+    if (activeFilters.platform) {
+        filtered = filtered.filter(game => 
+            game.platform && game.platform.some(p => 
+                p.toLowerCase().includes(activeFilters.platform.toLowerCase())
+            )
+        );
+    }
+
+    // Apply language filter
+    if (activeFilters.language) {
+        const languageMap = {
+            'vietnamese': ['việt', 'vietnam'],
+            'english': ['english', 'eng'],
+            'japanese': ['japanese', 'japan', 'jp'],
+            'korean': ['korean', 'korea', 'kr']
+        };
+        
+        const searchTerms = languageMap[activeFilters.language] || [activeFilters.language];
+        filtered = filtered.filter(game => 
+            searchTerms.some(term => 
+                (game.language || '').toLowerCase().includes(term)
+            )
+        );
+    }
+
+    // Apply engine filter
+    if (activeFilters.engine) {
+        filtered = filtered.filter(game => 
+            (game.engine || '').toLowerCase().includes(activeFilters.engine.toLowerCase())
+        );
+    }
+
+    // Apply genre filter
+    if (activeFilters.genre) {
+        filtered = filtered.filter(game => 
+            game.genre && game.genre.includes(activeFilters.genre)
+        );
+    }
+
+    // Apply tag filters
+    if (activeFilters.tags.length > 0) {
+        filtered = filtered.filter(game => {
+            return activeFilters.tags.every(tag => {
+                switch (tag) {
+                    case 'featured':
+                        return game.featured;
+                    case 'new':
+                        return isNewGame(game);
+                    case 'popular':
+                        return (game.downloads || 0) > 30000;
+                    case 'small':
+                        return isSmallGame(game);
+                    case 'free':
+                        return game.price === 0 || !game.price;
+                    case 'multiplayer':
+                        return game.tags && game.tags.some(t => t.toLowerCase().includes('multiplayer'));
+                    case 'singleplayer':
+                        return !game.tags || !game.tags.some(t => t.toLowerCase().includes('multiplayer'));
+                    default:
+                        return true;
+                }
+            });
+        });
+    }
+
+    filteredGames = filtered;
+    applySorting();
+    renderGames(filteredGames);
+    animateCards();
+
+    // Update results count
+    updateResultsCount(filteredGames.length);
+}
+
+function isNewGame(game) {
+    if (!game.releaseDate) return false;
+    const releaseDate = new Date(game.releaseDate);
+    const now = new Date();
+    const diffTime = Math.abs(now - releaseDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays <= 90; // New if released within 90 days
+}
+
+function isSmallGame(game) {
+    if (!game.size) return false;
+    const sizeStr = game.size.toLowerCase();
+    if (sizeStr.includes('mb')) {
+        const size = parseFloat(sizeStr);
+        return size < 1000; // Less than 1GB
+    }
+    if (sizeStr.includes('gb')) {
+        const size = parseFloat(sizeStr);
+        return size < 5; // Less than 5GB
+    }
+    return false;
+}
+
+function updateResultsCount(count) {
+    const existingCounter = document.querySelector('.results-counter');
+    if (existingCounter) {
+        existingCounter.remove();
+    }
+
+    const counter = document.createElement('div');
+    counter.className = 'results-counter';
+    counter.style.cssText = `
+        text-align: center;
+        margin: 20px 0;
+        padding: 15px 25px;
+        background: rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        border-radius: 20px;
+        color: var(--primary-light);
+        font-weight: 700;
+        font-size: 1.1rem;
+        backdrop-filter: blur(10px);
+    `;
+    counter.innerHTML = `🎮 Tìm thấy <span style="color: var(--primary); font-size: 1.3rem;">${count}</span> game phù hợp`;
+
+    const gameList = document.getElementById('game-list');
+    gameList.parentNode.insertBefore(counter, gameList);
+}
+
+// ===== Clear All Filters =====
+function setupClearFilters() {
+    const clearBtn = document.createElement('button');
+    clearBtn.className = 'clear-filters-btn';
+    clearBtn.innerHTML = '🧹 Xóa tất cả bộ lọc';
+    clearBtn.style.cssText = `
+        padding: 12px 24px;
+        background: linear-gradient(135deg, var(--error), #dc2626);
+        border: none;
+        border-radius: 15px;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+    `;
+    
+    clearBtn.addEventListener('click', clearAllFilters);
+    
+    const filterContainer = document.querySelector('.filter-tags-container');
+    filterContainer.appendChild(clearBtn);
+}
+
+function clearAllFilters() {
+    // Reset active filters
+    activeFilters = {
+        platform: null,
+        language: null,
+        engine: null,
+        genre: null,
+        tags: []
+    };
+
+    // Remove active classes
+    document.querySelectorAll('.platform-tag, .language-tag, .engine-tag, .filter-tag.premium').forEach(tag => {
+        tag.classList.remove('active');
+    });
+
+    // Reset selects
+    document.querySelectorAll('.filter-select').forEach(select => {
+        select.value = '';
+    });
+
+    // Apply filters (which will show all games)
+    applyFilters();
+    
+    showNotification('🧹 Đã xóa tất cả bộ lọc', 'success');
+}
+
+// ===== Initialize All Authentication & Filter Features =====
+document.addEventListener('DOMContentLoaded', () => {
+    setupAuthModal();
+    setupPasswordStrength();
+    setupPasswordToggle();
+    setupFormSubmission();
+    setupEnhancedFilters();
+    setupClearFilters();
+    checkSavedLogin();
+    
+    // Add some demo data to games for testing filters
+    setTimeout(() => {
+        if (allGames.length > 0) {
+            // Add engine and enhanced platform data to existing games
+            allGames.forEach((game, index) => {
+                if (!game.engine) {
+                    const engines = ['Unity', 'Unreal', 'Godot', 'GameMaker', 'Custom'];
+                    game.engine = engines[index % engines.length];
+                }
+                
+                // Enhance platform data
+                if (game.platform && !Array.isArray(game.platform)) {
+                    game.platform = [game.platform];
+                }
+                
+                // Add some mobile games
+                if (index % 5 === 0) {
+                    game.platform = game.platform || [];
+                    game.platform.push('Android', 'iOS');
+                }
+            });
+        }
+    }, 1000);
+});
+
+console.log('%c🔐 Authentication System Loaded!', 'background: linear-gradient(135deg, #10b981, #059669); color: white; font-size: 14px; font-weight: bold; padding: 8px 16px; border-radius: 6px;');
+console.log('%c🏷️ Enhanced Filter System Loaded!', 'background: linear-gradient(135deg, #f59e0b, #d97706); color: white; font-size: 14px; font-weight: bold; padding: 8px 16px; border-radius: 6px;');
