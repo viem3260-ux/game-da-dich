@@ -1763,38 +1763,66 @@ function setupAuthModal() {
     const logoutBtn = document.getElementById('logout-btn');
 
     // Show login modal
-    loginBtn?.addEventListener('click', () => {
-        authModalOverlay.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-        showLoginForm();
-    });
+    if (loginBtn) {
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Login button clicked'); // Debug log
+            
+            if (authModalOverlay) {
+                authModalOverlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                showLoginForm();
+                
+                // Focus on username input after modal opens
+                setTimeout(() => {
+                    const usernameInput = document.getElementById('login-username');
+                    if (usernameInput) {
+                        usernameInput.focus();
+                    }
+                }, 300);
+            }
+        });
+    }
 
     // Close modal
-    authModalClose?.addEventListener('click', closeAuthModal);
-    authModalOverlay?.addEventListener('click', (e) => {
-        if (e.target === authModalOverlay) {
-            closeAuthModal();
-        }
-    });
+    if (authModalClose) {
+        authModalClose.addEventListener('click', closeAuthModal);
+    }
+    
+    if (authModalOverlay) {
+        authModalOverlay.addEventListener('click', (e) => {
+            if (e.target === authModalOverlay) {
+                closeAuthModal();
+            }
+        });
+    }
 
     // Switch between login and register
-    showRegister?.addEventListener('click', (e) => {
-        e.preventDefault();
-        showRegisterForm();
-    });
+    if (showRegister) {
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            showRegisterForm();
+        });
+    }
 
-    showLogin?.addEventListener('click', (e) => {
-        e.preventDefault();
-        showLoginForm();
-    });
+    if (showLogin) {
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            showLoginForm();
+        });
+    }
 
     // Toggle user dropdown
-    userMenu?.addEventListener('click', (e) => {
-        if (isLoggedIn) {
-            e.stopPropagation();
-            userDropdown.style.display = userDropdown.style.display === 'none' ? 'block' : 'none';
-        }
-    });
+    if (userMenu) {
+        userMenu.addEventListener('click', (e) => {
+            if (isLoggedIn && userDropdown) {
+                e.stopPropagation();
+                const isVisible = userDropdown.style.display === 'block';
+                userDropdown.style.display = isVisible ? 'none' : 'block';
+            }
+        });
+    }
 
     // Close dropdown when clicking outside
     document.addEventListener('click', () => {
@@ -1804,25 +1832,361 @@ function setupAuthModal() {
     });
 
     // Logout
-    logoutBtn?.addEventListener('click', (e) => {
-        e.preventDefault();
-        logout();
-    });
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            logout();
+        });
+    }
 
     function closeAuthModal() {
-        authModalOverlay.style.display = 'none';
-        document.body.style.overflow = '';
+        if (authModalOverlay) {
+            authModalOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
     }
 
     function showLoginForm() {
-        loginForm.style.display = 'block';
-        registerForm.style.display = 'none';
+        if (loginForm) loginForm.style.display = 'block';
+        if (registerForm) registerForm.style.display = 'none';
     }
 
     function showRegisterForm() {
-        loginForm.style.display = 'none';
-        registerForm.style.display = 'block';
+        if (loginForm) loginForm.style.display = 'none';
+        if (registerForm) registerForm.style.display = 'block';
     }
+}
+
+// ===== Error Report Modal =====
+function setupErrorReportModal() {
+    const errorReportBtn = document.getElementById('error-report-btn');
+    const errorReportOverlay = document.getElementById('error-report-overlay');
+    const errorReportClose = document.getElementById('error-report-close');
+    const errorReportForm = document.getElementById('error-report-form');
+
+    if (errorReportBtn) {
+        errorReportBtn.addEventListener('click', () => {
+            if (errorReportOverlay) {
+                errorReportOverlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    }
+
+    function closeErrorModal() {
+        if (errorReportOverlay) {
+            errorReportOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (errorReportClose) {
+        errorReportClose.addEventListener('click', closeErrorModal);
+    }
+
+    if (errorReportOverlay) {
+        errorReportOverlay.addEventListener('click', (e) => {
+            if (e.target === errorReportOverlay) {
+                closeErrorModal();
+            }
+        });
+    }
+
+    if (errorReportForm) {
+        errorReportForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const errorType = document.getElementById('error-type').value;
+            const errorDescription = document.getElementById('error-description').value;
+            const errorEmail = document.getElementById('error-email').value;
+
+            if (!errorType || !errorDescription) {
+                showNotification('❌ Vui lòng điền đầy đủ thông tin!', 'error');
+                return;
+            }
+
+            // Show loading
+            const submitBtn = e.target.querySelector('.error-submit-btn');
+            const originalHTML = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="btn-icon">⏳</span><span class="btn-text">Đang gửi...</span>';
+            submitBtn.disabled = true;
+
+            try {
+                // Simulate sending report
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                showNotification('✅ Báo lỗi đã được gửi thành công! Cảm ơn bạn đã góp ý.', 'success');
+                closeErrorModal();
+                
+                // Reset form
+                errorReportForm.reset();
+                
+                // Redirect to admin page after 2 seconds
+                setTimeout(() => {
+                    window.open('https://www.facebook.com/share/1GCT3nGne5/', '_blank');
+                }, 2000);
+                
+            } catch (error) {
+                showNotification('❌ Có lỗi xảy ra. Vui lòng thử lại!', 'error');
+            } finally {
+                submitBtn.innerHTML = originalHTML;
+                submitBtn.disabled = false;
+            }
+        });
+    }
+}
+
+// ===== Enhanced Game Card with Image Carousel =====
+function createGameCard(game, index) {
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.style.animationDelay = `${index * 0.1}s`;
+    
+    // Prepare images for carousel
+    const images = [];
+    if (game.image) images.push(game.image);
+    if (game.screenshots && game.screenshots.length > 0) {
+        images.push(...game.screenshots.slice(0, 2)); // Add up to 2 screenshots
+    }
+    
+    // If only one image, duplicate it for smooth carousel
+    while (images.length < 3 && images.length > 0) {
+        images.push(images[0]);
+    }
+    
+    // Generate carousel HTML
+    const carouselHTML = images.length > 1 ? `
+        <div class="image-carousel">
+            <div class="carousel-images" id="carousel-${game.id}">
+                ${images.map(img => `
+                    <img src="${img}" alt="${game.title}" class="carousel-image" loading="lazy" 
+                         onerror="this.src='https://via.placeholder.com/400x260/1a1f35/64748b?text=${encodeURIComponent(game.title)}'">
+                `).join('')}
+            </div>
+            <button class="carousel-controls carousel-prev" onclick="prevImage('${game.id}')">‹</button>
+            <button class="carousel-controls carousel-next" onclick="nextImage('${game.id}')">›</button>
+            <div class="carousel-indicators">
+                ${images.map((_, i) => `
+                    <div class="carousel-indicator ${i === 0 ? 'active' : ''}" onclick="goToImage('${game.id}', ${i})"></div>
+                `).join('')}
+            </div>
+        </div>
+    ` : `
+        <img src="${game.image}" alt="${game.title}" loading="lazy" 
+             onerror="this.src='https://via.placeholder.com/400x260/1a1f35/64748b?text=${encodeURIComponent(game.title)}'">
+    `;
+    
+    // Generate genre badges
+    const genreTags = game.genre 
+        ? game.genre.slice(0, 3).map(g => `<span class="tag" data-genre="${g}">${g}</span>`).join('')
+        : '';
+    
+    // Platform list with icons
+    const platforms = game.platform 
+        ? game.platform.slice(0, 3).join(', ')
+        : 'PC';
+    
+    // Enhanced rating display with stars
+    const ratingDisplay = game.rating 
+        ? `<span style="color: var(--warning); font-weight: 800; display: flex; align-items: center; gap: 5px;">
+             ${game.rating.toFixed(1)}
+             <span style="color: var(--warning);">${'★'.repeat(Math.floor(game.rating))}</span>
+           </span>`
+        : '<span style="color: var(--text-muted);">N/A</span>';
+    
+    // Enhanced featured badge
+    const featuredBadge = game.featured 
+        ? '<div class="game-badge">🌟 Nổi Bật</div>' 
+        : '';
+    
+    // Enhanced alternative download links
+    const altLinks = game.alternativeLinks && game.alternativeLinks.length > 0
+        ? `
+            <div style="margin-top: 15px; display: flex; flex-wrap: wrap; gap: 10px;">
+                ${game.alternativeLinks.map(link => `
+                    <a href="${link.url}" target="_blank" rel="noopener" 
+                       class="alt-download-link"
+                       style="display: inline-flex; align-items: center; gap: 8px;
+                              padding: 10px 18px; 
+                              background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15)); 
+                              color: var(--primary-light); 
+                              text-decoration: none; border-radius: 15px; font-size: 0.9rem;
+                              border: 1px solid rgba(99, 102, 241, 0.3); font-weight: 700;
+                              transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                              position: relative; overflow: hidden;">
+                        <span style="font-size: 1.1rem;">${getLinkIcon(link.name)}</span>
+                        ${link.name}
+                    </a>
+                `).join('')}
+            </div>
+        `
+        : '';
+    
+    card.innerHTML = `
+        <div class="game-card-image">
+            ${carouselHTML}
+            ${featuredBadge}
+            <div class="image-overlay"></div>
+        </div>
+        <div class="content">
+            <h3>${game.title}</h3>
+            
+            <div class="game-meta">
+                <div class="meta-item">
+                    <span>Đánh giá</span>
+                    ${ratingDisplay}
+                </div>
+                <div class="meta-item">
+                    <span>Dung lượng</span>
+                    <span style="color: var(--text-secondary); font-weight: 700;">${game.size || 'N/A'}</span>
+                </div>
+                <div class="meta-item">
+                    <span>Tải về</span>
+                    <span style="color: var(--success); font-weight: 700;">${formatDownloads(game.downloads || 0)}</span>
+                </div>
+            </div>
+            
+            <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 25px;
+                      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+                ${game.description}
+            </p>
+            
+            ${game.genre ? `
+                <div class="game-tags">
+                    ${genreTags}
+                </div>
+            ` : ''}
+            
+            <div style="margin-top: 25px; padding-top: 25px; border-top: 1px solid var(--border);">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; 
+                            color: var(--text-muted); font-size: 0.95rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 1.1rem;">🖥️</span>
+                            Nền tảng:
+                        </span>
+                        <span style="color: var(--text-secondary); font-weight: 700;">${platforms}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 1.1rem;">🇻🇳</span>
+                            Ngôn ngữ:
+                        </span>
+                        <span style="color: var(--success); font-weight: 700;">${game.language || 'Tiếng Việt (100%)'}</span>
+                    </div>
+                </div>
+                
+                <a href="${game.download}" target="_blank" rel="noopener" 
+                   class="download-btn" onclick="trackDownload('${game.id}', '${game.title}')">
+                    <span style="font-size: 1.2rem;">⬇️</span>
+                    Tải Game Ngay
+                </a>
+                
+                ${altLinks}
+                
+                ${game.trailer ? `
+                    <a href="${game.trailer}" target="_blank" rel="noopener"
+                       style="display: flex; align-items: center; justify-content: center; gap: 10px;
+                              margin-top: 15px; padding: 15px 28px; 
+                              background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(245, 158, 11, 0.15)); 
+                              color: var(--accent); 
+                              text-decoration: none; border-radius: 18px; font-weight: 800;
+                              border: 1px solid rgba(236, 72, 153, 0.3); text-align: center;
+                              transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); font-size: 1rem;
+                              text-transform: uppercase; letter-spacing: 0.5px;">
+                        <span style="font-size: 1.3rem;">🎬</span>
+                        Xem Trailer
+                    </a>
+                ` : ''}
+            </div>
+        </div>
+    `;
+    
+    // Setup auto-play carousel if multiple images
+    if (images.length > 1) {
+        setTimeout(() => {
+            setupImageCarousel(game.id, images.length);
+        }, 100);
+    }
+    
+    return card;
+}
+
+// ===== Image Carousel Functions =====
+let carouselIntervals = {};
+let currentImageIndex = {};
+
+function setupImageCarousel(gameId, imageCount) {
+    currentImageIndex[gameId] = 0;
+    
+    // Auto-play carousel every 3 seconds
+    carouselIntervals[gameId] = setInterval(() => {
+        nextImage(gameId, true);
+    }, 3000);
+    
+    // Pause auto-play on hover
+    const card = document.querySelector(`#carousel-${gameId}`).closest('.game-card');
+    if (card) {
+        card.addEventListener('mouseenter', () => {
+            clearInterval(carouselIntervals[gameId]);
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            carouselIntervals[gameId] = setInterval(() => {
+                nextImage(gameId, true);
+            }, 3000);
+        });
+    }
+}
+
+function nextImage(gameId, isAuto = false) {
+    const carousel = document.getElementById(`carousel-${gameId}`);
+    if (!carousel) return;
+    
+    const images = carousel.querySelectorAll('.carousel-image');
+    const indicators = carousel.parentElement.querySelectorAll('.carousel-indicator');
+    
+    currentImageIndex[gameId] = (currentImageIndex[gameId] + 1) % images.length;
+    
+    carousel.style.transform = `translateX(-${currentImageIndex[gameId] * 100}%)`;
+    
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentImageIndex[gameId]);
+    });
+}
+
+function prevImage(gameId) {
+    const carousel = document.getElementById(`carousel-${gameId}`);
+    if (!carousel) return;
+    
+    const images = carousel.querySelectorAll('.carousel-image');
+    const indicators = carousel.parentElement.querySelectorAll('.carousel-indicator');
+    
+    currentImageIndex[gameId] = (currentImageIndex[gameId] - 1 + images.length) % images.length;
+    
+    carousel.style.transform = `translateX(-${currentImageIndex[gameId] * 100}%)`;
+    
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentImageIndex[gameId]);
+    });
+}
+
+function goToImage(gameId, index) {
+    const carousel = document.getElementById(`carousel-${gameId}`);
+    if (!carousel) return;
+    
+    const indicators = carousel.parentElement.querySelectorAll('.carousel-indicator');
+    
+    currentImageIndex[gameId] = index;
+    
+    carousel.style.transform = `translateX(-${currentImageIndex[gameId] * 100}%)`;
+    
+    // Update indicators
+    indicators.forEach((indicator, i) => {
+        indicator.classList.toggle('active', i === index);
+    });
 }
 
 // ===== Password Strength Checker =====
@@ -2440,6 +2804,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFormSubmission();
     setupEnhancedFilters();
     setupClearFilters();
+    setupErrorReportModal();
     checkSavedLogin();
     
     // Add some demo data to games for testing filters
@@ -2462,6 +2827,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     game.platform = game.platform || [];
                     game.platform.push('Android', 'iOS');
                 }
+                
+                // Add screenshots for carousel
+                if (!game.screenshots || game.screenshots.length === 0) {
+                    game.screenshots = [
+                        `https://via.placeholder.com/400x260/1a1f35/64748b?text=${encodeURIComponent(game.title)}+Screenshot+1`,
+                        `https://via.placeholder.com/400x260/2d3548/94a3b8?text=${encodeURIComponent(game.title)}+Screenshot+2`
+                    ];
+                }
             });
         }
     }, 1000);
@@ -2474,6 +2847,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 4000);
 });
+
+// ===== Make carousel functions global =====
+window.nextImage = nextImage;
+window.prevImage = prevImage;
+window.goToImage = goToImage;
 
 // ===== Keyboard Shortcuts Enhancement =====
 document.addEventListener('keydown', (e) => {
